@@ -72,6 +72,7 @@ const handleMouseMove = (event) => {
 
     .techno-container:hover::before {
         opacity: 0.3;
+        transition: opacity 0.1s ease;
     }
 
     .techno-container span {
