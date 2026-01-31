@@ -4,6 +4,7 @@
     import MesTechnos from '@/components/MesTechnos.vue';
     import MesXp from '@/components/MesXp.vue';
     import MesProjets from '@/components/MesProjets.vue';
+    import AppFooter from '@/components/Footer.vue';
 </script>
 
 <template>
@@ -13,6 +14,7 @@
     <MesTechnos />
     <MesXp />
     <MesProjets />
+    <AppFooter />
   </div>
 </template>
 
