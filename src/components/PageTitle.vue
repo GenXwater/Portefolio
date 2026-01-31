@@ -4,7 +4,7 @@
 
 <template>
     <div id="top-line">
-        <img id="profile-img" src="../assets/profil_view.jpeg" alt="Louis GENTY" width="300px" height="300px">
+        <img id="profile-img" src="../assets/profil_view.jpeg" alt="Louis GENTY" width="300px" height="300px" draggable="false">
         <div id="line">
             <p>
                 Je suis <span class="text-highlight-1">Louis GENTY</span>, <br/>
@@ -32,6 +32,8 @@
     #top-line #profile-img {
         float: left;
         margin-right: 50px;
+        border-radius: 50%;
+        user-select: none;
     }
 
     #top-line #line {
