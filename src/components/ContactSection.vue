@@ -37,6 +37,18 @@
     const isSubmitting = ref(false);
     const isSubmitted = ref(false);
     const focusedField = ref(null);
+    let blurTimeout = null;
+
+    const handleFocus = (field) => {
+        clearTimeout(blurTimeout);
+        focusedField.value = field;
+    };
+
+    const handleBlur = () => {
+        blurTimeout = setTimeout(() => {
+            focusedField.value = null;
+        }, 200);
+    };
 
     const handleSubmit = async () => {
         isSubmitting.value = true;
@@ -118,8 +130,10 @@
                                 type="text" 
                                 id="name" 
                                 v-model="form.name"
-                                @focus="focusedField = 'name'"
-                                @blur="focusedField = null"
+                                @focus="handleFocus('name')"
+                                @blur="handleBlur"
+                                autocomplete="name"
+                                spellcheck="false"
                                 required
                             />
                         </div>
@@ -129,8 +143,10 @@
                                 type="email" 
                                 id="email" 
                                 v-model="form.email"
-                                @focus="focusedField = 'email'"
-                                @blur="focusedField = null"
+                                @focus="handleFocus('email')"
+                                @blur="handleBlur"
+                                autocomplete="email"
+                                spellcheck="false"
                                 required
                             />
                         </div>
@@ -142,8 +158,10 @@
                             type="text" 
                             id="subject" 
                             v-model="form.subject"
-                            @focus="focusedField = 'subject'"
-                            @blur="focusedField = null"
+                            @focus="handleFocus('subject')"
+                            @blur="handleBlur"
+                            autocomplete="off"
+                            spellcheck="false"
                             required
                         />
                     </div>
@@ -153,8 +171,9 @@
                         <textarea 
                             id="message" 
                             v-model="form.message"
-                            @focus="focusedField = 'message'"
-                            @blur="focusedField = null"
+                            @focus="handleFocus('message')"
+                            @blur="handleBlur"
+                            spellcheck="false"
                             rows="5"
                             required
                         ></textarea>
@@ -368,6 +387,23 @@
         z-index: 1;
     }
 
+    .form-group::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 10px;
+        pointer-events: none;
+        opacity: 0;
+        box-shadow: 
+            0 0 15px color-mix(in srgb, var(--vt-c-custom-text-1) 40%, transparent),
+            0 0 30px color-mix(in srgb, var(--vt-c-custom-text-2) 25%, transparent);
+        transition: opacity 0.3s ease;
+    }
+
+    .form-group.focused::after {
+        opacity: 1;
+    }
+
     .form-group.focused {
         z-index: 2;
     }
@@ -423,25 +459,35 @@
     }
 
     .form-group input:focus,
-    .form-group textarea:focus {
+    .form-group textarea:focus,
+    .form-group.focused input,
+    .form-group.focused textarea {
         outline: none;
         border-color: var(--vt-c-custom-text-1);
-        box-shadow: 
-            0 0 15px color-mix(in srgb, var(--vt-c-custom-text-1) 40%, transparent),
-            0 0 30px color-mix(in srgb, var(--vt-c-custom-text-2) 25%, transparent);
     }
 
     /* Fix autocomplete background */
     .form-group input:-webkit-autofill,
     .form-group input:-webkit-autofill:hover,
     .form-group input:-webkit-autofill:focus,
+    .form-group input:-webkit-autofill:active,
     .form-group textarea:-webkit-autofill,
     .form-group textarea:-webkit-autofill:hover,
-    .form-group textarea:-webkit-autofill:focus {
+    .form-group textarea:-webkit-autofill:focus,
+    .form-group textarea:-webkit-autofill:active {
         -webkit-box-shadow: 0 0 0 1000px color-mix(in srgb, var(--vt-c-custom-dark-1), var(--vt-c-custom-text-1) 5%) inset !important;
-        -webkit-text-fill-color: var(--color-text) !important;
-        caret-color: var(--color-text);
-        transition: background-color 5000s ease-in-out 0s;
+        -webkit-text-fill-color: var(--vt-c-text-dark-2) !important;
+        color: var(--vt-c-text-dark-2) !important;
+        caret-color: var(--vt-c-text-dark-2) !important;
+        background-color: transparent !important;
+        transition: background-color 5000s ease-in-out 0s, color 5000s ease-in-out 0s;
+        border-color: var(--vt-c-custom-text-1) !important;
+        text-decoration: none !important;
+    }
+
+    .form-group input:-webkit-autofill::first-line {
+        color: var(--vt-c-text-dark-2) !important;
+        text-decoration: none !important;
     }
 
     /* ===== BOUTON SUBMIT STATES ===== */
