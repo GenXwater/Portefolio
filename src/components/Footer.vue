@@ -28,10 +28,6 @@
         background: color-mix(in srgb, var(--vt-c-custom-dark-1) 90%, var(--vt-c-custom-text-1) 5%);
     }
 
-    .footer-wrapper.compact {
-        margin-top: auto;
-    }
-
     .footer-content {
         max-width: 1280px;
         margin: 0 auto;
