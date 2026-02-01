@@ -4,6 +4,7 @@
     import IconBriefcase from './icons/IconBriefcase.vue';
     import IconSend from './icons/IconSend.vue';
     import ButtonPrimary from './ui/ButtonPrimary.vue';
+    import ButtonSecondary from './ui/ButtonSecondary.vue';
 
     const menuOpen = ref(false);
 
@@ -31,23 +32,17 @@
 
             <!-- Boutons à droite -->
             <div class="header-right">
-                <a href="#" class="header-btn btn-secondary">
-                    <span class="btn-content">
-                        <IconDocument class="btn-icon" />
-                        <span class="btn-text">Mon CV</span>
-                    </span>
-                    <span class="btn-glow"></span>
-                </a>
-                <a href="#" class="header-btn btn-secondary">
-                    <span class="btn-content">
-                        <IconBriefcase class="btn-icon" />
-                        <span class="btn-text">Mes Services</span>
-                    </span>
-                    <span class="btn-glow"></span>
-                </a>
-                <ButtonPrimary href="#contact" class="header-btn">
-                    <IconSend class="btn-icon" />
-                    <span class="btn-text">Me contacter</span>
+                <ButtonSecondary href="#">
+                    <IconDocument />
+                    <span>Mon CV</span>
+                </ButtonSecondary>
+                <ButtonSecondary href="#">
+                    <IconBriefcase />
+                    <span>Mes Services</span>
+                </ButtonSecondary>
+                <ButtonPrimary href="#contact">
+                    <IconSend />
+                    <span>Me contacter</span>
                 </ButtonPrimary>
             </div>
 
@@ -65,21 +60,17 @@
             <a href="#projets" class="mobile-link" @click="menuOpen = false">Projets</a>
             <a href="#xp" class="mobile-link" @click="menuOpen = false">Expériences</a>
             <div class="mobile-btns">
-                <a href="#" class="header-btn btn-secondary mobile-btn">
-                    <span class="btn-content">
-                        <IconDocument class="btn-icon" />
-                        <span class="btn-text">Mon CV</span>
-                    </span>
-                </a>
-                <a href="#" class="header-btn btn-secondary mobile-btn">
-                    <span class="btn-content">
-                        <IconBriefcase class="btn-icon" />
-                        <span class="btn-text">Mes Services</span>
-                    </span>
-                </a>
-                <ButtonPrimary href="#contact" class="header-btn mobile-btn" @click="menuOpen = false">
-                    <IconSend class="btn-icon" />
-                    <span class="btn-text">Me contacter</span>
+                <ButtonSecondary href="#">
+                    <IconDocument />
+                    <span>Mon CV</span>
+                </ButtonSecondary>
+                <ButtonSecondary href="#">
+                    <IconBriefcase />
+                    <span>Mes Services</span>
+                </ButtonSecondary>
+                <ButtonPrimary href="#contact" @click="menuOpen = false">
+                    <IconSend />
+                    <span>Me contacter</span>
                 </ButtonPrimary>
             </div>
         </nav>
@@ -182,67 +173,6 @@
         gap: 12px;
     }
 
-    .header-btn {
-        position: relative;
-        text-decoration: none;
-        padding: 10px 20px;
-        border-radius: 50px;
-        font-size: 13px;
-        font-weight: 600;
-        overflow: hidden;
-        cursor: pointer;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .btn-content {
-        position: relative;
-        z-index: 2;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-
-    .btn-icon {
-        width: 16px;
-        height: 16px;
-        flex-shrink: 0;
-        transition: transform 0.3s ease;
-    }
-
-    /* Boutons secondaires */
-    .btn-secondary {
-        background: color-mix(in srgb, var(--vt-c-custom-dark-1), var(--vt-c-custom-text-1) 8%);
-        color: var(--color-text);
-    }
-
-    .btn-secondary .btn-glow {
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(135deg, 
-            color-mix(in srgb, var(--vt-c-custom-text-1) 20%, transparent),
-            transparent 50%);
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
-
-    .btn-secondary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 5px 20px color-mix(in srgb, var(--vt-c-custom-text-1) 25%, transparent);
-    }
-
-    .btn-secondary:hover .btn-glow {
-        opacity: 1;
-    }
-
-    .btn-secondary:hover .btn-icon {
-        transform: scale(1.2) rotate(-5deg);
-    }
-
-    /* Animation au clic */
-    .header-btn:active {
-        transform: scale(0.95) !important;
-    }
-
     /* ===== MENU BURGER ===== */
     .burger-menu {
         display: none;
@@ -306,15 +236,6 @@
         flex-direction: column;
         gap: 10px;
         margin-top: 20px;
-    }
-
-    .mobile-btn {
-        justify-content: center;
-        text-align: center;
-    }
-
-    .mobile-btn .btn-content {
-        justify-content: center;
     }
 
     /* ===== RESPONSIVE ===== */
