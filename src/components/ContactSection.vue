@@ -320,6 +320,11 @@
     .form-group {
         position: relative;
         width: 100%;
+        z-index: 1;
+    }
+
+    .form-group.focused {
+        z-index: 2;
     }
 
     .form-group label {
