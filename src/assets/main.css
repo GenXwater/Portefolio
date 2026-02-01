@@ -12,3 +12,57 @@
     padding: 0 20px;
   }
 }
+
+/* Sweep glow reusable effect */
+.sweep-highlight {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--sweep-radius, 12px);
+}
+
+.sweep-highlight::after {
+  content: '';
+  position: absolute;
+  inset: -20%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(120, 160, 255, 0.0) 15%,
+    rgba(120, 160, 255, 0.35) 45%,
+    rgba(255, 140, 160, 0.35) 55%,
+    rgba(120, 160, 255, 0.0) 85%,
+    transparent 100%
+  );
+  filter: blur(22px);
+  opacity: 0;
+  transform: translateX(-100%);
+  pointer-events: none;
+}
+
+.sweep-highlight::before {
+  content: '';
+  position: absolute;
+  inset: -30%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(120, 160, 255, 0.2) 40%,
+    rgba(255, 140, 160, 0.2) 60%,
+    transparent 100%
+  );
+  filter: blur(40px);
+  opacity: 0;
+  transform: translateX(-100%);
+  pointer-events: none;
+}
+
+.sweep-highlight.sweep-animate::after,
+.sweep-highlight.sweep-animate::before {
+  animation: sweep-glow 0.9s ease-in-out;
+}
+
+@keyframes sweep-glow {
+  0% { transform: translateX(-100%); opacity: 0; }
+  25% { opacity: 0.9; }
+  100% { transform: translateX(100%); opacity: 0; }
+}
