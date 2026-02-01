@@ -1,15 +1,22 @@
 <script setup>
     import { ref } from 'vue';
+    import { RouterLink, useRouter } from 'vue-router';
     import IconDocument from './icons/IconDocument.vue';
     import IconBriefcase from './icons/IconBriefcase.vue';
     import IconSend from './icons/IconSend.vue';
     import ButtonPrimary from './ui/ButtonPrimary.vue';
     import ButtonSecondary from './ui/ButtonSecondary.vue';
 
+    const router = useRouter();
     const menuOpen = ref(false);
 
     const toggleMenu = () => {
         menuOpen.value = !menuOpen.value;
+    };
+
+    const goToContact = () => {
+        menuOpen.value = false;
+        router.push('/contact');
     };
 </script>
 
@@ -18,15 +25,15 @@
         <div class="header-content">
             <!-- Logo / Identité à gauche -->
             <div class="header-left">
-                <div class="logo-badge">
+                <RouterLink to="/" class="logo-badge">
                     <span class="logo-brace">&#123;&#123;</span>
                     <span class="logo-text">Louis<span class="text-highlight-2">.dev</span></span>
                     <span class="logo-brace">&#125;&#125;</span>
-                </div>
+                </RouterLink>
                 <nav class="nav-links">
-                    <a href="#about-me" class="nav-link">À propos</a>
-                    <a href="#projets" class="nav-link">Projets</a>
-                    <a href="#xp" class="nav-link">Expériences</a>
+                    <RouterLink to="/#about-me" class="nav-link">À propos</RouterLink>
+                    <RouterLink to="/#projets" class="nav-link">Projets</RouterLink>
+                    <RouterLink to="/#xp" class="nav-link">Expériences</RouterLink>
                 </nav>
             </div>
 
@@ -40,7 +47,7 @@
                     <IconBriefcase />
                     <span>Mes Services</span>
                 </ButtonSecondary>
-                <ButtonPrimary href="#contact">
+                <ButtonPrimary @click="goToContact">
                     <IconSend />
                     <span>Me contacter</span>
                 </ButtonPrimary>
@@ -56,9 +63,9 @@
 
         <!-- Menu mobile -->
         <nav class="mobile-nav" :class="{ 'open': menuOpen }">
-            <a href="#about-me" class="mobile-link" @click="menuOpen = false">À propos</a>
-            <a href="#projets" class="mobile-link" @click="menuOpen = false">Projets</a>
-            <a href="#xp" class="mobile-link" @click="menuOpen = false">Expériences</a>
+            <RouterLink to="/#about-me" class="mobile-link" @click="menuOpen = false">À propos</RouterLink>
+            <RouterLink to="/#projets" class="mobile-link" @click="menuOpen = false">Projets</RouterLink>
+            <RouterLink to="/#xp" class="mobile-link" @click="menuOpen = false">Expériences</RouterLink>
             <div class="mobile-btns">
                 <ButtonSecondary href="#">
                     <IconDocument />
@@ -68,7 +75,7 @@
                     <IconBriefcase />
                     <span>Mes Services</span>
                 </ButtonSecondary>
-                <ButtonPrimary href="#contact" @click="menuOpen = false">
+                <ButtonPrimary @click="goToContact">
                     <IconSend />
                     <span>Me contacter</span>
                 </ButtonPrimary>
