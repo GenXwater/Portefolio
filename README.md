@@ -1,4 +1,4 @@
-# Portfolio - Louis GENTY
+# Portfolio
 
 Mon portfolio personnel développé avec Vue 3 et Vite.
 
