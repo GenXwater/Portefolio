@@ -76,16 +76,35 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background: var(--vt-c-custom-dark-1);
+        background: var(--color-background);
         border: 3px solid var(--vt-c-custom-text-1);
         border-radius: 50%;
-        overflow: hidden;
+        overflow: visible;
+        box-shadow:
+            0 0 15px color-mix(in srgb, var(--vt-c-custom-text-1) 40%, transparent),
+            0 0 30px color-mix(in srgb, var(--vt-c-custom-text-2) 25%, transparent);
+        animation: neon-pulse 3.5s ease-in-out infinite;
     }
 
     .project-image img {
         max-width: 70%;
         max-height: 70%;
         object-fit: contain;
+        position: relative;
+        z-index: 1;
+    }
+
+    @keyframes neon-pulse {
+        0%, 100% {
+            box-shadow:
+                0 0 15px color-mix(in srgb, var(--vt-c-custom-text-1) 40%, transparent),
+                0 0 30px color-mix(in srgb, var(--vt-c-custom-text-2) 25%, transparent);
+        }
+        50% {
+            box-shadow:
+                0 0 18px color-mix(in srgb, var(--vt-c-custom-text-1) 45%, transparent),
+                0 0 36px color-mix(in srgb, var(--vt-c-custom-text-2) 30%, transparent);
+        }
     }
 
     .project-name {
