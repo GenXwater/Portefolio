@@ -1,5 +1,8 @@
 <script setup>
     import { ref } from 'vue';
+    import IconDocument from './icons/IconDocument.vue';
+    import IconBriefcase from './icons/IconBriefcase.vue';
+    import IconSend from './icons/IconSend.vue';
 
     const menuOpen = ref(false);
 
@@ -14,8 +17,9 @@
             <!-- Logo / Identité à gauche -->
             <div class="header-left">
                 <div class="logo-badge">
-                    <span class="logo-icon">⚡</span>
+                    <span class="logo-brace">&#123;&#123;</span>
                     <span class="logo-text">Louis<span class="text-highlight-2">.dev</span></span>
+                    <span class="logo-brace">&#125;&#125;</span>
                 </div>
                 <nav class="nav-links">
                     <a href="#about-me" class="nav-link">À propos</a>
@@ -28,21 +32,21 @@
             <div class="header-right">
                 <a href="#" class="header-btn btn-secondary">
                     <span class="btn-content">
-                        <span class="btn-icon">📄</span>
+                        <IconDocument class="btn-icon" />
                         <span class="btn-text">Mon CV</span>
                     </span>
                     <span class="btn-glow"></span>
                 </a>
                 <a href="#" class="header-btn btn-secondary">
                     <span class="btn-content">
-                        <span class="btn-icon">💼</span>
+                        <IconBriefcase class="btn-icon" />
                         <span class="btn-text">Mes Services</span>
                     </span>
                     <span class="btn-glow"></span>
                 </a>
                 <a href="#contact" class="header-btn btn-primary">
                     <span class="btn-content">
-                        <span class="btn-icon">✉️</span>
+                        <IconSend class="btn-icon" />
                         <span class="btn-text">Me contacter</span>
                     </span>
                     <span class="btn-glow"></span>
@@ -66,19 +70,19 @@
             <div class="mobile-btns">
                 <a href="#" class="header-btn btn-secondary mobile-btn">
                     <span class="btn-content">
-                        <span class="btn-icon">📄</span>
+                        <IconDocument class="btn-icon" />
                         <span class="btn-text">Mon CV</span>
                     </span>
                 </a>
                 <a href="#" class="header-btn btn-secondary mobile-btn">
                     <span class="btn-content">
-                        <span class="btn-icon">💼</span>
+                        <IconBriefcase class="btn-icon" />
                         <span class="btn-text">Mes Services</span>
                     </span>
                 </a>
                 <a href="#contact" class="header-btn btn-primary mobile-btn" @click="menuOpen = false">
                     <span class="btn-content">
-                        <span class="btn-icon">✉️</span>
+                        <IconSend class="btn-icon" />
                         <span class="btn-text">Me contacter</span>
                     </span>
                 </a>
@@ -120,20 +124,22 @@
     .logo-badge {
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 4px;
         font-size: 20px;
         font-weight: 700;
         color: var(--vt-c-custom-text-1);
     }
 
-    .logo-icon {
-        font-size: 24px;
+    .logo-brace {
+        font-size: 22px;
+        font-weight: 700;
+        color: #f0db4f;
         animation: pulse-glow 2s ease-in-out infinite;
     }
 
     @keyframes pulse-glow {
-        0%, 100% { filter: drop-shadow(0 0 5px var(--vt-c-custom-text-1)); }
-        50% { filter: drop-shadow(0 0 15px var(--vt-c-custom-text-1)); }
+        0%, 100% { filter: drop-shadow(0 0 5px #f0db4f); }
+        50% { filter: drop-shadow(0 0 15px #f0db4f); }
     }
 
     .logo-text {
@@ -202,7 +208,9 @@
     }
 
     .btn-icon {
-        font-size: 14px;
+        width: 16px;
+        height: 16px;
+        flex-shrink: 0;
         transition: transform 0.3s ease;
     }
 
