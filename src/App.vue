@@ -15,14 +15,11 @@
 <style scoped>
   .app-wrapper {
     display: flex;
-    flex-direction: column;
     min-height: 100vh;
   }
 
   main {
-    width: 100%;
     flex: 1;
     display: flex;
-    flex-direction: column;
   }
 </style>
