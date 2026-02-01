@@ -24,21 +24,21 @@
 
 <style scoped>
     #top-line {
-        margin-top: 50px;
+        margin-top: 120px;
         width: 100%;
         height: 300px;
+        display: flex;
+        justify-content: center;
     }
 
     #top-line #profile-img {
-        float: left;
         margin-right: 50px;
         border-radius: 50%;
         user-select: none;
     }
 
     #top-line #line {
-        float: left;
-        transform: translateY(40%);
+        transform: translateY(30%);
         text-align: center;
     }
 
@@ -58,12 +58,20 @@
     .social-img {
         margin-right: 10px;
         filter: opacity(0.7);
-        border-radius: 7px;
     }
 
     @media screen and (max-width: 905px) {
+        #top-line {
+            flex-direction: column;
+            align-items: center;
+            height: auto;
+        }
+
         #top-line #profile-img {
-            display: none;
+            display: block;
+            width: 280px;
+            height: 280px;
+            margin: 0 0 16px;
         }
 
         #top-line #line {
