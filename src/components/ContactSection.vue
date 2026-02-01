@@ -391,7 +391,7 @@
     }
 
     /* ===== BOUTON SUBMIT STATES ===== */
-    .spinner {
+    :deep(.spinner) {
         width: 16px;
         height: 16px;
         border: 2px solid transparent;
@@ -404,7 +404,7 @@
         to { transform: rotate(360deg); }
     }
 
-    .check-icon {
+    :deep(.check-icon) {
         width: 16px;
         height: 16px;
     }

@@ -43,6 +43,7 @@
         border-radius: 50px;
         font-size: 13px;
         font-weight: 600;
+        line-height: 1;
         overflow: hidden;
         cursor: pointer;
         border: none;

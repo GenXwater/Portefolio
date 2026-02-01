@@ -24,6 +24,7 @@
         border-radius: 50px;
         font-size: 13px;
         font-weight: 600;
+        line-height: 1;
         cursor: pointer;
         border: none;
         background: color-mix(in srgb, var(--vt-c-custom-dark-1), var(--vt-c-custom-text-1) 8%);
