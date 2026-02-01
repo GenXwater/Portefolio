@@ -27,7 +27,7 @@
             <div class="header-left">
                 <RouterLink to="/" class="logo-badge">
                     <span class="logo-brace">&#123;&#123;</span>
-                    <span class="logo-text">Louis<span class="text-highlight-2">.dev</span></span>
+                    <span class="logo-text">&nbsp;Louis<span class="text-highlight-2">.dev&nbsp;</span></span>
                     <span class="logo-brace">&#125;&#125;</span>
                 </RouterLink>
                 <nav class="nav-links">
@@ -121,6 +121,7 @@
         font-size: 20px;
         font-weight: 700;
         color: var(--vt-c-custom-text-1);
+        text-decoration: none;
     }
 
     .logo-brace {
