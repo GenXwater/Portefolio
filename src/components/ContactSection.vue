@@ -441,6 +441,25 @@
         resize: none;
     }
 
+    /* Scrollbar personnalisée pour textarea */
+    .form-group textarea::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .form-group textarea::-webkit-scrollbar-track {
+        background: transparent;
+        border-radius: 4px;
+    }
+
+    .form-group textarea::-webkit-scrollbar-thumb {
+        background: color-mix(in srgb, var(--vt-c-custom-text-1) 30%, transparent);
+        border-radius: 4px;
+    }
+
+    .form-group textarea::-webkit-scrollbar-thumb:hover {
+        background: color-mix(in srgb, var(--vt-c-custom-text-1) 50%, transparent);
+    }
+
     .form-group input:focus,
     .form-group textarea:focus,
     .form-group.focused input,
