@@ -4,6 +4,7 @@
   max-width: 1280px;
   margin: 0 auto;
   width: 100%;
+  padding-inline: clamp(16px, 4vw, 24px);
 }
 
 @media screen and (max-width: 905px) {
