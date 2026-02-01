@@ -1,0 +1,456 @@
+<script setup>
+    import { ref } from 'vue';
+    import IconSend from './icons/IconSend.vue';
+    import IconMail from './icons/IconMail.vue';
+    import IconMapPin from './icons/IconMapPin.vue';
+    import IconClock from './icons/IconClock.vue';
+    import ButtonPrimary from './ui/ButtonPrimary.vue';
+
+    const form = ref({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+    });
+
+    const isSubmitting = ref(false);
+    const isSubmitted = ref(false);
+    const focusedField = ref(null);
+
+    const handleSubmit = async () => {
+        isSubmitting.value = true;
+        // Simulation d'envoi
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        isSubmitting.value = false;
+        isSubmitted.value = true;
+        
+        // Reset après 3 secondes
+        setTimeout(() => {
+            isSubmitted.value = false;
+            form.value = { name: '', email: '', subject: '', message: '' };
+        }, 3000);
+    };
+</script>
+
+<template>
+    <section id="contact" class="contact-section">
+        <div class="contact-container">
+            <!-- En-tête -->
+            <div class="contact-header">
+                <h2 class="text-highlight-1 section-title">Me contacter</h2>
+                <p class="contact-subtitle">
+                    Une idée de projet ? Une question ? N'hésitez pas à me contacter, 
+                    je vous répondrai dans les plus brefs délais.
+                </p>
+            </div>
+
+            <div class="contact-content">
+                <!-- Infos de contact -->
+                <div class="contact-info">
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <IconMail />
+                        </div>
+                        <div class="info-content">
+                            <span class="info-label">Email</span>
+                            <a href="mailto:contact@louis.dev" class="info-value text-highlight-2">contact@louis.dev</a>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <IconMapPin />
+                        </div>
+                        <div class="info-content">
+                            <span class="info-label">Localisation</span>
+                            <span class="info-value">France</span>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <IconClock />
+                        </div>
+                        <div class="info-content">
+                            <span class="info-label">Disponibilité</span>
+                            <span class="info-value status-available">
+                                <span class="status-dot"></span>
+                                Disponible
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Decoration -->
+                    <div class="decoration-pattern">
+                        <span v-for="n in 9" :key="n" class="pattern-dot"></span>
+                    </div>
+                </div>
+
+                <!-- Formulaire -->
+                <form class="contact-form" @submit.prevent="handleSubmit">
+                    <div class="form-row">
+                        <div class="form-group" :class="{ 'focused': focusedField === 'name', 'filled': form.name }">
+                            <label for="name">Nom</label>
+                            <input 
+                                type="text" 
+                                id="name" 
+                                v-model="form.name"
+                                @focus="focusedField = 'name'"
+                                @blur="focusedField = null"
+                                required
+                            />
+                        </div>
+                        <div class="form-group" :class="{ 'focused': focusedField === 'email', 'filled': form.email }">
+                            <label for="email">Email</label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                v-model="form.email"
+                                @focus="focusedField = 'email'"
+                                @blur="focusedField = null"
+                                required
+                            />
+                        </div>
+                    </div>
+
+                    <div class="form-group" :class="{ 'focused': focusedField === 'subject', 'filled': form.subject }">
+                        <label for="subject">Sujet</label>
+                        <input 
+                            type="text" 
+                            id="subject" 
+                            v-model="form.subject"
+                            @focus="focusedField = 'subject'"
+                            @blur="focusedField = null"
+                            required
+                        />
+                    </div>
+
+                    <div class="form-group" :class="{ 'focused': focusedField === 'message', 'filled': form.message }">
+                        <label for="message">Message</label>
+                        <textarea 
+                            id="message" 
+                            v-model="form.message"
+                            @focus="focusedField = 'message'"
+                            @blur="focusedField = null"
+                            rows="5"
+                            required
+                        ></textarea>
+                    </div>
+
+                    <ButtonPrimary 
+                        type="submit" 
+                        :loading="isSubmitting"
+                        :success="isSubmitted"
+                    >
+                        <template v-if="!isSubmitting && !isSubmitted">
+                            <IconSend />
+                            <span>Envoyer le message</span>
+                        </template>
+                        <template v-if="isSubmitting">
+                            <span class="spinner"></span>
+                            <span>Envoi en cours...</span>
+                        </template>
+                        <template v-if="isSubmitted">
+                            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <span>Message envoyé !</span>
+                        </template>
+                    </ButtonPrimary>
+                </form>
+            </div>
+        </div>
+
+        <!-- Background decoration -->
+        <div class="bg-glow"></div>
+    </section>
+</template>
+
+<style scoped>
+    .contact-section {
+        position: relative;
+        margin-top: 100px;
+        padding: 60px 0;
+        overflow: hidden;
+    }
+
+    .contact-container {
+        position: relative;
+        z-index: 1;
+    }
+
+    .contact-header {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .contact-subtitle {
+        max-width: 500px;
+        margin: 0 auto;
+        color: var(--vt-c-text-dark-2);
+        font-size: 16px;
+        line-height: 1.7;
+    }
+
+    .contact-content {
+        display: grid;
+        grid-template-columns: 1fr 1.5fr;
+        gap: 40px;
+        align-items: start;
+    }
+
+    /* ===== INFOS DE CONTACT ===== */
+    .contact-info {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        position: relative;
+    }
+
+    .info-card {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 20px;
+        background: color-mix(in srgb, var(--vt-c-custom-dark-1), var(--vt-c-custom-text-1) 5%);
+        border-radius: 12px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .info-card:hover {
+        transform: translateX(5px);
+        box-shadow: -5px 0 20px color-mix(in srgb, var(--vt-c-custom-text-1) 15%, transparent);
+    }
+
+    .info-icon {
+        width: 45px;
+        height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: color-mix(in srgb, var(--vt-c-custom-text-1) 15%, transparent);
+        border-radius: 10px;
+        flex-shrink: 0;
+    }
+
+    .info-icon svg {
+        width: 22px;
+        height: 22px;
+        color: var(--vt-c-custom-text-1);
+    }
+
+    .info-content {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+    }
+
+    .info-label {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--vt-c-text-dark-2);
+    }
+
+    .info-value {
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--color-text);
+        text-decoration: none;
+    }
+
+    a.info-value:hover {
+        text-decoration: underline;
+    }
+
+    .status-available {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #4ade80;
+    }
+
+    .status-dot {
+        width: 8px;
+        height: 8px;
+        background: #4ade80;
+        border-radius: 50%;
+        animation: pulse-status 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-status {
+        0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.4); }
+        50% { opacity: 0.8; box-shadow: 0 0 0 8px rgba(74, 222, 128, 0); }
+    }
+
+    .decoration-pattern {
+        display: grid;
+        grid-template-columns: repeat(3, 8px);
+        gap: 12px;
+        margin-top: 20px;
+        margin-left: 10px;
+        opacity: 0.3;
+    }
+
+    .pattern-dot {
+        width: 8px;
+        height: 8px;
+        background: var(--vt-c-custom-text-1);
+        border-radius: 50%;
+    }
+
+    /* ===== FORMULAIRE ===== */
+    .contact-form {
+        background: color-mix(in srgb, var(--vt-c-custom-dark-1), var(--vt-c-custom-text-1) 5%);
+        padding: 35px;
+        border-radius: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 25px;
+    }
+
+    .form-row {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .form-group {
+        position: relative;
+        width: 100%;
+    }
+
+    .form-group label {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 14px;
+        color: var(--vt-c-text-dark-2);
+        pointer-events: none;
+        transition: all 0.3s ease;
+    }
+
+    .form-group textarea ~ label {
+        top: 20px;
+        transform: none;
+    }
+
+    .form-group.focused label,
+    .form-group.filled label {
+        top: -10px;
+        left: 10px;
+        font-size: 12px;
+        color: var(--vt-c-custom-text-1);
+        background: color-mix(in srgb, var(--vt-c-custom-dark-1), var(--vt-c-custom-text-1) 5%);
+        padding: 0 5px;
+    }
+
+    .form-group textarea ~ label {
+        transform: none;
+    }
+
+    .form-group.focused textarea ~ label,
+    .form-group.filled textarea ~ label {
+        top: -10px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 15px;
+        background: transparent;
+        border: 2px solid color-mix(in srgb, var(--vt-c-custom-text-1) 20%, transparent);
+        border-radius: 10px;
+        color: var(--color-text);
+        font-size: 15px;
+        font-family: inherit;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        resize: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+        outline: none;
+        border-color: var(--vt-c-custom-text-1);
+    }
+
+    /* Fix autocomplete background */
+    .form-group input:-webkit-autofill,
+    .form-group input:-webkit-autofill:hover,
+    .form-group input:-webkit-autofill:focus,
+    .form-group textarea:-webkit-autofill,
+    .form-group textarea:-webkit-autofill:hover,
+    .form-group textarea:-webkit-autofill:focus {
+        -webkit-box-shadow: 0 0 0 1000px color-mix(in srgb, var(--vt-c-custom-dark-1), var(--vt-c-custom-text-1) 5%) inset !important;
+        -webkit-text-fill-color: var(--color-text) !important;
+        caret-color: var(--color-text);
+        transition: background-color 5000s ease-in-out 0s;
+    }
+
+    /* ===== BOUTON SUBMIT STATES ===== */
+    .spinner {
+        width: 16px;
+        height: 16px;
+        border: 2px solid transparent;
+        border-top-color: currentColor;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+
+    .check-icon {
+        width: 16px;
+        height: 16px;
+    }
+
+    /* ===== BACKGROUND ===== */
+    .bg-glow {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, 
+            color-mix(in srgb, var(--vt-c-custom-text-1) 8%, transparent) 0%,
+            transparent 70%);
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media screen and (max-width: 905px) {
+        .contact-content {
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .contact-info {
+            order: 2;
+        }
+
+        .contact-form {
+            order: 1;
+        }
+
+        .form-row {
+            grid-template-columns: 1fr;
+        }
+
+        .decoration-pattern {
+            display: none;
+        }
+    }
+
+    @media screen and (max-width: 500px) {
+        .contact-form {
+            padding: 25px 20px;
+        }
+    }
+</style>

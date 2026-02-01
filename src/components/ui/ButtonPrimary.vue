@@ -39,9 +39,9 @@
         align-items: center;
         justify-content: center;
         text-decoration: none;
-        padding: 12px 24px;
+        padding: 10px 20px;
         border-radius: 50px;
-        font-size: 14px;
+        font-size: 13px;
         font-weight: 600;
         overflow: hidden;
         cursor: pointer;
@@ -56,12 +56,12 @@
         z-index: 2;
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 8px;
     }
 
     .btn-content :deep(svg) {
-        width: 18px;
-        height: 18px;
+        width: 16px;
+        height: 16px;
         flex-shrink: 0;
         transition: transform 0.3s ease;
     }
