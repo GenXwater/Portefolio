@@ -6,6 +6,7 @@
 <template>
     <div class="contact-page">
         <ContactSection compact />
+        <div class="footer-spacer"></div>
         <AppFooter compact />
     </div>
 </template>
@@ -17,7 +18,7 @@
         flex-direction: column;
     }
 
-    .contact-page > :last-child {
-        margin-top: auto;
+    .footer-spacer {
+        flex: 1;
     }
 </style>

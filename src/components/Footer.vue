@@ -18,14 +18,18 @@
 <style scoped>
     .footer-wrapper {
         margin-top: 100px;
-        width: 100vw;
+        position: relative;
+        left: 0;
+        right: 0;
         margin-left: calc(-50vw + 50%);
+        margin-right: calc(-50vw + 50%);
+        width: 100vw;
         border-top: 1px solid color-mix(in srgb, var(--vt-c-custom-text-1) 20%, transparent);
         background: color-mix(in srgb, var(--vt-c-custom-dark-1) 90%, var(--vt-c-custom-text-1) 5%);
     }
 
     .footer-wrapper.compact {
-        margin-top: 40px;
+        margin-top: auto;
     }
 
     .footer-content {
