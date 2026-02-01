@@ -192,9 +192,7 @@
 <style scoped>
     .contact-section {
         position: relative;
-        margin-top: 100px;
-        padding: 60px 0;
-        overflow: hidden;
+        padding: 120px 0;
     }
 
     .contact-section.compact {
@@ -501,12 +499,6 @@
 
         .decoration-pattern {
             display: none;
-        }
-    }
-
-    @media screen and (max-width: 500px) {
-        .contact-form {
-            padding: 25px 20px;
         }
     }
 </style>
