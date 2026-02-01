@@ -3,6 +3,7 @@
     import IconDocument from './icons/IconDocument.vue';
     import IconBriefcase from './icons/IconBriefcase.vue';
     import IconSend from './icons/IconSend.vue';
+    import ButtonPrimary from './ui/ButtonPrimary.vue';
 
     const menuOpen = ref(false);
 
@@ -44,14 +45,10 @@
                     </span>
                     <span class="btn-glow"></span>
                 </a>
-                <a href="#contact" class="header-btn btn-primary">
-                    <span class="btn-content">
-                        <IconSend class="btn-icon" />
-                        <span class="btn-text">Me contacter</span>
-                    </span>
-                    <span class="btn-glow"></span>
-                    <span class="btn-shine"></span>
-                </a>
+                <ButtonPrimary href="#contact" class="header-btn">
+                    <IconSend class="btn-icon" />
+                    <span class="btn-text">Me contacter</span>
+                </ButtonPrimary>
             </div>
 
             <!-- Menu burger mobile -->
@@ -80,12 +77,10 @@
                         <span class="btn-text">Mes Services</span>
                     </span>
                 </a>
-                <a href="#contact" class="header-btn btn-primary mobile-btn" @click="menuOpen = false">
-                    <span class="btn-content">
-                        <IconSend class="btn-icon" />
-                        <span class="btn-text">Me contacter</span>
-                    </span>
-                </a>
+                <ButtonPrimary href="#contact" class="header-btn mobile-btn" @click="menuOpen = false">
+                    <IconSend class="btn-icon" />
+                    <span class="btn-text">Me contacter</span>
+                </ButtonPrimary>
             </div>
         </nav>
     </header>
@@ -241,55 +236,6 @@
 
     .btn-secondary:hover .btn-icon {
         transform: scale(1.2) rotate(-5deg);
-    }
-
-    /* Bouton principal - effet spécial */
-    .btn-primary {
-        background: linear-gradient(135deg, var(--vt-c-custom-text-2), color-mix(in srgb, var(--vt-c-custom-text-2) 80%, var(--vt-c-custom-text-1)));
-        color: var(--vt-c-custom-dark-1);
-    }
-
-    .btn-primary .btn-glow {
-        position: absolute;
-        inset: -2px;
-        background: linear-gradient(135deg, var(--vt-c-custom-text-2), var(--vt-c-custom-text-1));
-        border-radius: 50px;
-        z-index: -1;
-        opacity: 0;
-        filter: blur(8px);
-        transition: opacity 0.3s ease;
-    }
-
-    .btn-primary .btn-shine {
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, 
-            transparent, 
-            rgba(255, 255, 255, 0.3), 
-            transparent);
-        transition: left 0.5s ease;
-    }
-
-    .btn-primary:hover {
-        transform: translateY(-3px) scale(1.02);
-        box-shadow: 
-            0 8px 25px color-mix(in srgb, var(--vt-c-custom-text-2) 40%, transparent),
-            0 0 40px color-mix(in srgb, var(--vt-c-custom-text-2) 20%, transparent);
-    }
-
-    .btn-primary:hover .btn-glow {
-        opacity: 0.6;
-    }
-
-    .btn-primary:hover .btn-shine {
-        left: 100%;
-    }
-
-    .btn-primary:hover .btn-icon {
-        transform: scale(1.2) translateX(3px);
     }
 
     /* Animation au clic */
