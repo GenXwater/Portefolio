@@ -1,10 +1,27 @@
 <script setup>
-    import { ref } from 'vue';
+    import { ref, computed } from 'vue';
     import IconSend from './icons/IconSend.vue';
-    import IconMail from './icons/IconMail.vue';
+    import IconCoffee from './icons/IconCoffee.vue';
     import IconMapPin from './icons/IconMapPin.vue';
     import IconClock from './icons/IconClock.vue';
     import ButtonPrimary from './ui/ButtonPrimary.vue';
+
+    // Calcul du nombre de cafés selon l'heure
+    const coffeeCount = computed(() => {
+        const now = new Date();
+        const hour = now.getHours();
+        const dayOfYear = Math.floor((now - new Date(now.getFullYear(), 0, 0)) / 86400000);
+        
+        // Avant 7h : 0 café
+        if (hour < 7) return 0;
+        // Après 14h : nombre final de la journée (2, 3 ou 4 selon le jour)
+        if (hour >= 14) return 2 + (dayOfYear % 3); // Varie entre 2, 3, 4
+        
+        // Entre 7h et 14h : progression
+        const maxToday = 2 + (dayOfYear % 3); // 2, 3 ou 4 selon le jour
+        const progress = (hour - 7) / 7; // 0 à 1 sur la plage 7h-14h
+        return Math.min(Math.ceil(progress * maxToday), maxToday);
+    });
 
     const form = ref({
         name: '',
@@ -48,12 +65,14 @@
                 <!-- Infos de contact -->
                 <div class="contact-info">
                     <div class="info-card">
-                        <div class="info-icon">
-                            <IconMail />
+                        <div class="info-icon icon-coffee">
+                            <IconCoffee />
                         </div>
                         <div class="info-content">
-                            <span class="info-label">Email</span>
-                            <a href="mailto:contact@louis.dev" class="info-value text-highlight-2">contact@louis.dev</a>
+                            <span class="info-label">Cafés consommés aujourd'hui</span>
+                            <span class="info-value coffee-count">
+                                <span v-for="n in 4" :key="n" class="coffee-dot" :class="{ 'active': n <= coffeeCount }">☕</span>
+                            </span>
                         </div>
                     </div>
 
@@ -261,6 +280,26 @@
 
     a.info-value:hover {
         text-decoration: underline;
+    }
+
+    /* Café counter */
+    .icon-coffee svg {
+        color: #c9a66b;
+    }
+
+    .coffee-count {
+        display: flex;
+        gap: 4px;
+    }
+
+    .coffee-dot {
+        font-size: 16px;
+        opacity: 0.2;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .coffee-dot.active {
+        opacity: 1;
     }
 
     .status-available {
