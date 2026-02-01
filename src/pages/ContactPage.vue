@@ -5,13 +5,19 @@
 
 <template>
     <div class="contact-page">
-        <ContactSection />
-        <AppFooter />
+        <ContactSection compact />
+        <AppFooter compact />
     </div>
 </template>
 
 <style scoped>
     .contact-page {
-        min-height: calc(100vh - 90px);
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .contact-page > :last-child {
+        margin-top: auto;
     }
 </style>

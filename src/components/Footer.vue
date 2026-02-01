@@ -1,9 +1,13 @@
 <script setup>
+    defineProps({
+        compact: { type: Boolean, default: false }
+    });
+
     const year = new Date().getFullYear();
 </script>
 
 <template>
-    <footer class="footer-wrapper">
+    <footer class="footer-wrapper" :class="{ 'compact': compact }">
         <div class="footer-content">
             <p>Conçu & développé par <span class="text-highlight-2">Louis</span></p>
             <p class="copyright">© {{ year }}</p>
@@ -18,6 +22,10 @@
         margin-left: calc(-50vw + 50%);
         border-top: 1px solid color-mix(in srgb, var(--vt-c-custom-text-1) 20%, transparent);
         background: color-mix(in srgb, var(--vt-c-custom-dark-1) 90%, var(--vt-c-custom-text-1) 5%);
+    }
+
+    .footer-wrapper.compact {
+        margin-top: 40px;
     }
 
     .footer-content {

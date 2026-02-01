@@ -6,6 +6,10 @@
     import IconClock from './icons/IconClock.vue';
     import ButtonPrimary from './ui/ButtonPrimary.vue';
 
+    defineProps({
+        compact: { type: Boolean, default: false }
+    });
+
     // Calcul du nombre de cafés selon l'heure
     const coffeeCount = computed(() => {
         const now = new Date();
@@ -50,7 +54,7 @@
 </script>
 
 <template>
-    <section id="contact" class="contact-section">
+    <section id="contact" class="contact-section" :class="{ 'compact': compact }">
         <div class="contact-container">
             <!-- En-tête -->
             <div class="contact-header">
@@ -191,6 +195,10 @@
         margin-top: 100px;
         padding: 60px 0;
         overflow: hidden;
+    }
+
+    .contact-section.compact {
+        margin-top: 20px;
     }
 
     .contact-container {

@@ -8,7 +8,7 @@
 </script>
 
 <template>
-  <div>
+  <div class="portefolio-main">
     <PageTitle />
     <AboutMe />
     <MesTechnos />
@@ -19,5 +19,9 @@
 </template>
 
 <style scoped>
-
+  .portefolio-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
 </style>
