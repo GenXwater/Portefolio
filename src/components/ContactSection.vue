@@ -359,6 +359,7 @@
 
     .form-group input,
     .form-group textarea {
+        position: relative;
         width: 100%;
         padding: 15px;
         background: transparent;
@@ -375,6 +376,9 @@
     .form-group textarea:focus {
         outline: none;
         border-color: var(--vt-c-custom-text-1);
+        box-shadow: 
+            0 0 15px color-mix(in srgb, var(--vt-c-custom-text-1) 40%, transparent),
+            0 0 30px color-mix(in srgb, var(--vt-c-custom-text-2) 25%, transparent);
     }
 
     /* Fix autocomplete background */
