@@ -1,10 +1,6 @@
 <script setup>
 import { ref } from 'vue';
 import ProjectSingle from './ProjectSingle.vue';
-import { useSweepOnHash } from '@/composables/useSweepOnHash.js';
-
-const projectsEl = ref(null);
-useSweepOnHash(projectsEl, '#projects');
 
 const projects = ref([
     {
@@ -34,7 +30,7 @@ const projects = ref([
 </script>
 
 <template>
-  <div id="projects" ref="projectsEl" class="sweep-highlight">
+    <div id="projects">
     <h2 class="text-highlight-1 section-title">Quelques projets</h2>
     <div class="projects-grid">
       <ProjectSingle 
@@ -53,7 +49,6 @@ const projects = ref([
 <style scoped>
 #projects {
     margin-top: 80px;
-    --sweep-radius: 12px;
 }
 
 .projects-grid {
