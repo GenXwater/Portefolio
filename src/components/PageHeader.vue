@@ -32,8 +32,8 @@
                 </RouterLink>
                 <nav class="nav-links">
                     <RouterLink to="/#about-me" class="nav-link">À propos</RouterLink>
-                    <RouterLink to="/#projects" class="nav-link">Projets</RouterLink>
                     <RouterLink to="/#xp" class="nav-link">Expériences</RouterLink>
+                    <RouterLink to="/#projects" class="nav-link">Projets</RouterLink>
                 </nav>
             </div>
 
@@ -64,8 +64,8 @@
         <!-- Menu mobile -->
         <nav class="mobile-nav" :class="{ 'open': menuOpen }">
             <RouterLink to="/#about-me" class="mobile-link" @click="menuOpen = false">À propos</RouterLink>
-            <RouterLink to="/#projects" class="mobile-link" @click="menuOpen = false">Projets</RouterLink>
             <RouterLink to="/#xp" class="mobile-link" @click="menuOpen = false">Expériences</RouterLink>
+            <RouterLink to="/#projects" class="mobile-link" @click="menuOpen = false">Projets</RouterLink>
             <div class="mobile-btns">
                 <ButtonSecondary href="#">
                     <IconDocument />
