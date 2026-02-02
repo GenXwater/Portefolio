@@ -59,21 +59,20 @@
             const res = await fetch('/.netlify/functions/sendEmail', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(form.value)
+                body: JSON.stringify({
+                    name: form.value.name,
+                    email: form.value.email,
+                    subject: form.value.subject,
+                    message: form.value.message
+                })
             });
-
-            const text = await res.text();
-            if (!res.ok) throw new Error(text || 'Erreur serveur');
-
-            isSubmitted.value = true;
-            form.value = { name: '', email: '', subject: '', message: '' };
-
-            setTimeout(() => {
-                isSubmitted.value = false;
-            }, 3000);
+            if (!res.ok) {
+                const text = await res.text();
+                throw new Error(text || 'Erreur serveur');
+            }
+            // succès : réinitialiser form / afficher message
         } catch (err) {
-            console.error(err);
-            error.value = err.message || 'Erreur lors de l\'envoi';
+            error.value = err.message;
         } finally {
             isSubmitting.value = false;
         }
