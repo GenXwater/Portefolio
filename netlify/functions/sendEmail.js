@@ -13,7 +13,7 @@ export const handler = async (event) => {
 		return { statusCode: 400, body: 'Invalid JSON' };
 	}
 
-	const { name, email, message } = data;
+	const { name, email, subject, message } = data;
 	if (!name || !email || !message) {
 		return { statusCode: 400, body: 'Missing fields' };
 	}
@@ -41,7 +41,7 @@ export const handler = async (event) => {
 		const mailOptions = {
 			from: `${name} <${email}>`,
 			to,
-			subject: `Contact form: ${name}`,
+			subject: subject || `Contact form: ${name}`,
 			text: `From: ${name} <${email}>\n\n${message}`,
 			html: `<p>From: <strong>${name}</strong> &lt;${email}&gt;</p><p>${message}</p>`,
 		};

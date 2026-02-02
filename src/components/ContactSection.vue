@@ -36,6 +36,8 @@
 
     const isSubmitting = ref(false);
     const isSubmitted = ref(false);
+    const error = ref('');
+
     const focusedField = ref(null);
     let blurTimeout = null;
 
@@ -52,16 +54,29 @@
 
     const handleSubmit = async () => {
         isSubmitting.value = true;
-        // Simulation d'envoi
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        isSubmitting.value = false;
-        isSubmitted.value = true;
-        
-        // Reset après 3 secondes
-        setTimeout(() => {
-            isSubmitted.value = false;
+        error.value = '';
+        try {
+            const res = await fetch('/.netlify/functions/sendEmail', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(form.value)
+            });
+
+            const text = await res.text();
+            if (!res.ok) throw new Error(text || 'Erreur serveur');
+
+            isSubmitted.value = true;
             form.value = { name: '', email: '', subject: '', message: '' };
-        }, 3000);
+
+            setTimeout(() => {
+                isSubmitted.value = false;
+            }, 3000);
+        } catch (err) {
+            console.error(err);
+            error.value = err.message || 'Erreur lors de l\'envoi';
+        } finally {
+            isSubmitting.value = false;
+        }
     };
 </script>
 
@@ -199,6 +214,9 @@
                             <span>Message envoyé !</span>
                         </template>
                     </ButtonPrimary>
+
+                    <!-- show error if any -->
+                    <p v-if="error" class="form-error" style="color:#f87171;margin-top:8px;">{{ error }}</p>
                 </form>
             </div>
         </div>
