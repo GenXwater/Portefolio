@@ -36,5 +36,3 @@ coverage
 __screenshots__/
 
 .netlify
-
-.env
