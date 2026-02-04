@@ -34,12 +34,23 @@
         message: ''
     });
 
+    const errors = ref({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+    });
+
+    const honeypot = ref('');
     const isSubmitting = ref(false);
     const isSubmitted = ref(false);
     const error = ref('');
 
     const focusedField = ref(null);
     let blurTimeout = null;
+
+    const COOLDOWN = 60000; // 1 minute
+    const lastSubmitTime = ref(0);
 
     const handleFocus = (field) => {
         clearTimeout(blurTimeout);
@@ -52,40 +63,108 @@
         }, 200);
     };
 
+    const validateField = (field) => {
+        errors.value[field] = '';
+        const v = form.value[field] ? form.value[field].toString() : '';
+        switch (field) {
+            case 'name':
+                if (v.trim().length < 2) errors.value.name = 'Merci de renseigner votre nom';
+                break;
+            case 'email':
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) errors.value.email = 'Veuillez entrer une adresse mail valide';
+                break;
+            case 'subject':
+                if (v.trim().length < 3) errors.value.subject = 'Merci de donner un titre à votre demande';
+                break;
+            case 'message':
+                if (v.trim().length < 10) errors.value.message = 'Merci de me décrire votre demande';
+                else if (v.length > 5000) errors.value.message = 'Message trop long (maximum 5000 caractères)';
+                break;
+        }
+    };
+
+    const validateForm = () => {
+        let ok = true;
+        Object.keys(form.value).forEach(k => {
+            validateField(k);
+            if (errors.value[k]) ok = false;
+        });
+        return ok;
+    };
+
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    const resetForm = () => {
+        form.value.name = '';
+        form.value.email = '';
+        form.value.subject = '';
+        form.value.message = '';
+        errors.value.name = '';
+        errors.value.email = '';
+        errors.value.subject = '';
+        errors.value.message = '';
+    };
+
     const handleSubmit = async () => {
+        // honeypot
+        if (honeypot.value !== '') {
+            console.log('Bot détecté');
+            return;
+        }
+
+        // cooldown
+        const now = Date.now();
+        if (now - lastSubmitTime.value < COOLDOWN) {
+            const remaining = Math.ceil((COOLDOWN - (now - lastSubmitTime.value)) / 1000);
+            error.value = `⏱️ Veuillez attendre ${remaining} secondes avant de renvoyer`;
+            scrollToTop();
+            return;
+        }
+
+        // validation
+        if (!validateForm()) {
+            error.value = 'Veuillez corriger les erreurs dans le formulaire';
+            scrollToTop();
+            return;
+        }
+
         isSubmitting.value = true;
         error.value = '';
+
         try {
+            // use field names compatible with netlify function (also accept from_name/from_email)
+            const body = {
+                from_name: form.value.name,
+                from_email: form.value.email,
+                subject: form.value.subject,
+                message: `Sujet: ${form.value.subject}\n\n${form.value.message}`
+            };
+
             const res = await fetch('/api/sendEmail', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    name: form.value.name,
-                    email: form.value.email,
-                    subject: form.value.subject,
-                    message: form.value.message
-                })
+                body: JSON.stringify(body)
             });
 
             const payload = await res.json().catch(() => null);
+
             if (!res.ok) {
                 const msg = payload && (payload.error || payload.details) ? (payload.error || payload.details) : 'Erreur serveur';
                 throw new Error(msg);
             }
 
-            // succès : réinitialiser form / afficher message
             isSubmitted.value = true;
-            form.value.name = '';
-            form.value.email = '';
-            form.value.subject = '';
-            form.value.message = '';
+            resetForm();
+            lastSubmitTime.value = now;
 
-            // reset submitted state after a short delay
-            setTimeout(() => {
-                isSubmitted.value = false;
-            }, 5000);
+            setTimeout(() => { isSubmitted.value = false; }, 5000);
+            scrollToTop();
         } catch (err) {
+            console.error('Erreur send:', err);
             error.value = err && err.message ? err.message : 'Erreur lors de l\'envoi';
+            scrollToTop();
         } finally {
             isSubmitting.value = false;
         }
@@ -158,11 +237,12 @@
                                 id="name" 
                                 v-model="form.name"
                                 @focus="handleFocus('name')"
-                                @blur="handleBlur"
+                                    @blur="() => { handleBlur(); validateField('name'); }"
                                 autocomplete="name"
                                 spellcheck="false"
                                 required
                             />
+                                    <span v-if="errors.name" class="error-message" style="color:#ff6b9d;font-size:0.9rem;margin-top:6px;display:block">{{ errors.name }}</span>
                         </div>
                         <div class="form-group" :class="{ 'focused': focusedField === 'email', 'filled': form.email }">
                             <label for="email">Email</label>
@@ -171,11 +251,12 @@
                                 id="email" 
                                 v-model="form.email"
                                 @focus="handleFocus('email')"
-                                @blur="handleBlur"
+                                    @blur="() => { handleBlur(); validateField('email'); }"
                                 autocomplete="email"
                                 spellcheck="false"
                                 required
                             />
+                                    <span v-if="errors.email" class="error-message" style="color:#ff6b9d;font-size:0.9rem;margin-top:6px;display:block">{{ errors.email }}</span>
                         </div>
                     </div>
 
@@ -186,11 +267,12 @@
                             id="subject" 
                             v-model="form.subject"
                             @focus="handleFocus('subject')"
-                            @blur="handleBlur"
+                            @blur="() => { handleBlur(); validateField('subject'); }"
                             autocomplete="off"
                             spellcheck="false"
                             required
                         />
+                        <span v-if="errors.subject" class="error-message" style="color:#ff6b9d;font-size:0.9rem;margin-top:6px;display:block">{{ errors.subject }}</span>
                     </div>
 
                     <div class="form-group" :class="{ 'focused': focusedField === 'message', 'filled': form.message }">
@@ -199,12 +281,16 @@
                             id="message" 
                             v-model="form.message"
                             @focus="handleFocus('message')"
-                            @blur="handleBlur"
+                            @blur="() => { handleBlur(); validateField('message'); }"
                             spellcheck="false"
                             rows="5"
                             required
                         ></textarea>
+                        <span v-if="errors.message" class="error-message" style="color:#ff6b9d;font-size:0.9rem;margin-top:6px;display:block">{{ errors.message }}</span>
                     </div>
+
+                    <!-- Honeypot invisible -->
+                    <input type="text" v-model="honeypot" name="website" style="position: absolute; left: -9999px; width:1px; height:1px;" tabindex="-1" autocomplete="off" />
 
                     <ButtonPrimary 
                         type="submit" 
