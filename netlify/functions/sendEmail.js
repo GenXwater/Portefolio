@@ -66,27 +66,6 @@ export const handler = async (event) => {
 			socketTimeout: 10000,
 		});
 
-		// Verify connection/auth for clearer error messages
-		try {
-			await transporter.verify();
-		} catch (verifyErr) {
-			// Log full error server-side for debugging
-			console.error('SMTP verify error (debug):', verifyErr);
-
-			// Provider-specific hint
-			let hint = '';
-			const hostLow = (host || '').toLowerCase();
-			if (hostLow.includes('gmail') || hostLow.includes('google')) {
-				hint = 'Google SMTP: check username/password and use an App Password or OAuth2.';
-			} else if (hostLow.includes('yahoo')) {
-				hint = 'Yahoo SMTP: use an App Password and try port 465 (secure=true).';
-			} else if (hostLow.includes('outlook') || hostLow.includes('office365') || hostLow.includes('hotmail')) {
-				hint = 'Outlook/Office365: confirm SMTP auth is enabled and credentials are correct.';
-			}
-
-			return { statusCode: 500, headers, body: JSON.stringify({ error: 'SMTP verify failed', hint }) };
-		}
-
 		// Build HTML like sendEmail2.js
 		const html = `
 			<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
