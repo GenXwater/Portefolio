@@ -56,7 +56,7 @@
         isSubmitting.value = true;
         error.value = '';
         try {
-            const res = await fetch('/.netlify/functions/sendEmail', {
+            const res = await fetch('/api/sendEmail', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -66,13 +66,26 @@
                     message: form.value.message
                 })
             });
+
+            const payload = await res.json().catch(() => null);
             if (!res.ok) {
-                const text = await res.text();
-                throw new Error(text || 'Erreur serveur');
+                const msg = payload && (payload.error || payload.details) ? (payload.error || payload.details) : 'Erreur serveur';
+                throw new Error(msg);
             }
+
             // succès : réinitialiser form / afficher message
+            isSubmitted.value = true;
+            form.value.name = '';
+            form.value.email = '';
+            form.value.subject = '';
+            form.value.message = '';
+
+            // reset submitted state after a short delay
+            setTimeout(() => {
+                isSubmitted.value = false;
+            }, 5000);
         } catch (err) {
-            error.value = err.message;
+            error.value = err && err.message ? err.message : 'Erreur lors de l\'envoi';
         } finally {
             isSubmitting.value = false;
         }
