@@ -68,7 +68,7 @@
             <RouterLink to="/#xp" class="mobile-link" @click="menuOpen = false">Expériences</RouterLink>
             <RouterLink to="/#projects" class="mobile-link" @click="menuOpen = false">Projets</RouterLink>
             <div class="mobile-btns">
-                <RouterLink to="/services" class="btn-secondary mobile-link-btn">
+                <RouterLink to="/services" class="btn-secondary mobile-link-btn" @click="menuOpen = false">
                     <IconBriefcase />
                     <span>Mes Services</span>
                 </RouterLink>
