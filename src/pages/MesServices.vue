@@ -1,5 +1,11 @@
 <script setup>
 import Card from '../components/ui/Card.vue';
+import ButtonPrimary from '../components/ui/ButtonPrimary.vue';
+import IconSend from '../components/icons/IconSend.vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+const goToContact = () => router.push('/contact');
 </script>
 
 <template>
@@ -60,7 +66,10 @@ import Card from '../components/ui/Card.vue';
     </div>
 
     <div class="services-cta">
-      <router-link to="/contact"><button class="cta-btn">Me contacter pour un audit</button></router-link>
+      <ButtonPrimary @click="goToContact">
+        <IconSend />
+        <span>Me contacter pour un audit</span>
+      </ButtonPrimary>
     </div>
 
     <div class="page-glow" aria-hidden="true"></div>
