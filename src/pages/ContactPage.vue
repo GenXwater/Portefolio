@@ -1,13 +1,11 @@
 <script setup>
     import ContactSection from '@/components/ContactSection.vue';
-    import AppFooter from '@/components/Footer.vue';
 </script>
 
 <template>
     <div class="contact-page">
         <ContactSection compact />
         <div class="footer-spacer"></div>
-        <AppFooter compact />
     </div>
 </template>
 
