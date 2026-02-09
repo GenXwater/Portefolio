@@ -56,26 +56,26 @@ onMounted(() => {
 
 .switch-label {
   position: relative;
-  width: 60px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   background: var(--vt-c-custom-dark-1);
-  border-radius: 15px;
+  border-radius: 50%;
   cursor: pointer;
   border: 2px solid var(--vt-c-custom-text-1);
   box-shadow: 0 0 10px var(--vt-c-custom-text-1);
   transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .switch-slider {
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 24px;
-  height: 24px;
+  width: 16px;
+  height: 16px;
   background: var(--vt-c-custom-text-1);
   border-radius: 50%;
   transition: all 0.3s ease;
-  box-shadow: 0 0 15px var(--vt-c-custom-text-1);
+  box-shadow: 0 0 5px var(--vt-c-custom-text-1);
 }
 
 #theme-toggle:checked + .switch-label {
@@ -84,16 +84,15 @@ onMounted(() => {
 }
 
 #theme-toggle:checked + .switch-label .switch-slider {
-  transform: translateX(30px);
   background: var(--vt-c-custom-text-2);
-  box-shadow: 0 0 20px var(--vt-c-custom-text-2);
+  box-shadow: 0 0 10px var(--vt-c-custom-text-2);
 }
 
 .switch-label:hover {
-  box-shadow: 0 0 20px var(--vt-c-custom-text-1);
+  box-shadow: 0 0 15px var(--vt-c-custom-text-1);
 }
 
 #theme-toggle:checked + .switch-label:hover {
-  box-shadow: 0 0 30px var(--vt-c-custom-text-2);
+  box-shadow: 0 0 25px var(--vt-c-custom-text-2);
 }
 </style>
