@@ -45,6 +45,45 @@
   }
 }
 
+/* Manual theme toggle */
+.light-mode {
+  --surface: #ffffff !important;
+  --text-primary: #2B2420 !important;
+  --text-muted: rgba(17, 24, 39, 0.6) !important;
+
+  --accent: #D46A4A !important;
+  --accent-2: #2F6F73 !important;
+
+  --social-icon-color: var(--accent) !important;
+
+  --vt-c-custom-dark-1: var(--surface) !important;
+  --vt-c-text-dark-2: var(--text-primary) !important;
+  --vt-c-custom-text-1: var(--accent) !important;
+  --vt-c-custom-text-2: var(--accent-2) !important;
+
+  --color-background: var(--surface) !important;
+  --color-text: var(--text-primary) !important;
+}
+
+.dark-mode {
+  --surface: #082626 !important;
+  --text-primary: #E6F2F2 !important;
+  --text-muted: rgba(230, 242, 242, 0.7) !important;
+
+  --accent: #60fcfcd4 !important;
+  --accent-2: #E0A84F !important;
+
+  --social-icon-color: #ffffff !important;
+
+  --vt-c-custom-dark-1: var(--surface) !important;
+  --vt-c-text-dark-2: var(--text-primary) !important;
+  --vt-c-custom-text-1: var(--accent) !important;
+  --vt-c-custom-text-2: var(--accent-2) !important;
+
+  --color-background: var(--surface) !important;
+  --color-text: var(--text-primary) !important;
+}
+
 /* NOTE: defaults for light theme are set in :root above.
    Keep dark-mode overrides in @media (prefers-color-scheme: dark).
    If you want different light-mode accents, edit the values in :root. */

@@ -5,6 +5,7 @@
     import IconSend from './icons/IconSend.vue';
     import ButtonPrimary from './ui/ButtonPrimary.vue';
     import ButtonSecondary from './ui/ButtonSecondary.vue';
+    import ThemeSwitch from './ThemeSwitch.vue';
 
     const router = useRouter();
     const menuOpen = ref(false);
@@ -34,6 +35,11 @@
                     <RouterLink to="/#xp" class="nav-link">Expériences</RouterLink>
                     <RouterLink to="/#projects" class="nav-link">Projets</RouterLink>
                 </nav>
+            </div>
+
+            <!-- Switch thème au centre -->
+            <div class="header-center">
+                <ThemeSwitch />
             </div>
 
             <!-- Boutons à droite -->
