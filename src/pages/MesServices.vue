@@ -1,4 +1,5 @@
 <script setup>
+import Card from '../components/ui/Card.vue';
 </script>
 
 <template>
@@ -9,45 +10,53 @@
     </div>
 
     <div class="services-grid">
-      <article class="service-card">
-        <h3>⚙️ Automatisation complète avec n8n</h3>
-        <p>Automatisez les tâches répétitives. Scénarios robustes sur mesure pour connecter vos outils et gagner des heures chaque semaine.</p>
-      </article>
+      <Card class="service-card" :observe="false" style="--card-image-size:56px; --card-padding-top:36px;">
+        <template #image><span class="service-icon">⚙️</span></template>
+        <template #title>⚙️ Automatisation complète avec n8n</template>
+        Automatisez les tâches répétitives. Scénarios robustes sur mesure pour connecter vos outils et gagner des heures chaque semaine.
+      </Card>
 
-      <article class="service-card">
-        <h3>🧠 Chatbots & agents IA personnalisés</h3>
-        <p>Assistants intelligents 24/7 — réponses clients, traitement de documents, ou actions métiers basées sur GPT/Claude.</p>
-      </article>
+      <Card class="service-card" :observe="false" style="--card-image-size:56px; --card-padding-top:36px;">
+        <template #image><span class="service-icon">🧠</span></template>
+        <template #title>🧠 Chatbots & agents IA personnalisés</template>
+        Assistants intelligents 24/7 — réponses clients, traitement de documents, ou actions métiers basées sur GPT/Claude.
+      </Card>
 
-      <article class="service-card">
-        <h3>📄 Extraction intelligente de documents</h3>
-        <p>Lecture, résumé et extraction de données depuis PDF/Word pour rendre vos fichiers immédiatement exploitables.</p>
-      </article>
+      <Card class="service-card" :observe="false" style="--card-image-size:56px; --card-padding-top:36px;">
+        <template #image><span class="service-icon">📄</span></template>
+        <template #title>📄 Extraction intelligente de documents</template>
+        Lecture, résumé et extraction de données depuis PDF/Word pour rendre vos fichiers immédiatement exploitables.
+      </Card>
 
-      <article class="service-card">
-        <h3>🔌 Agents API intelligents</h3>
-        <p>Orchestration d'API et agents autonomes qui dialoguent avec vos services et automatisent des workflows complexes.</p>
-      </article>
+      <Card class="service-card" :observe="false" style="--card-image-size:56px; --card-padding-top:36px;">
+        <template #image><span class="service-icon">🔌</span></template>
+        <template #title>🔌 Agents API intelligents</template>
+        Orchestration d'API et agents autonomes qui dialoguent avec vos services et automatisent des workflows complexes.
+      </Card>
 
-      <article class="service-card">
-        <h3>🚧 IA & automation pour BTP / logistique</h3>
-        <p>Solutions terrain adaptées au suivi chantier, logistique et opérations, conçues pour la robustesse et l'échelle.</p>
-      </article>
+      <Card class="service-card" :observe="false" style="--card-image-size:56px; --card-padding-top:36px;">
+        <template #image><span class="service-icon">🚧</span></template>
+        <template #title>🚧 IA & automation pour BTP / logistique</template>
+        Solutions terrain adaptées au suivi chantier, logistique et opérations, conçues pour la robustesse et l'échelle.
+      </Card>
 
-      <article class="service-card">
-        <h3>💻 Sites web & outils métiers</h3>
-        <p>Sites vitrines et micro-apps intégrées, rapides et prêtes à connecter CRM/IA/automation pour convertir vos visiteurs.</p>
-      </article>
+      <Card class="service-card" :observe="false" style="--card-image-size:56px; --card-padding-top:36px;">
+        <template #image><span class="service-icon">💻</span></template>
+        <template #title>💻 Sites web & outils métiers</template>
+        Sites vitrines et micro-apps intégrées, rapides et prêtes à connecter CRM/IA/automation pour convertir vos visiteurs.
+      </Card>
 
-      <article class="service-card">
-        <h3>🛠️ Développement d'outils métiers IA</h3>
-        <p>Copilotes internes et micro-apps pour rédiger, classer et piloter vos opérations.</p>
-      </article>
+      <Card class="service-card" :observe="false" style="--card-image-size:56px; --card-padding-top:36px;">
+        <template #image><span class="service-icon">🛠️</span></template>
+        <template #title>🛠️ Développement d'outils métiers IA</template>
+        Copilotes internes et micro-apps pour rédiger, classer et piloter vos opérations.
+      </Card>
 
-      <article class="service-card">
-        <h3>🔁 Workflows IA pour PME</h3>
-        <p>Automatisation des leads, relances, devis, RDV et suivi clients pour fluidifier vos opérations.</p>
-      </article>
+      <Card class="service-card" :observe="false" style="--card-image-size:56px; --card-padding-top:36px;">
+        <template #image><span class="service-icon">🔁</span></template>
+        <template #title>🔁 Workflows IA pour PME</template>
+        Automatisation des leads, relances, devis, RDV et suivi clients pour fluidifier vos opérations.
+      </Card>
     </div>
 
     <div class="services-cta">
@@ -107,6 +116,8 @@
   }
 
   .service-card p { color: var(--text-muted); }
+
+  .service-icon { font-size: 28px; line-height: 1; }
 
   .service-card::before {
     content: '';
