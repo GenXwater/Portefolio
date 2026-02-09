@@ -135,7 +135,8 @@ onMounted(() => {
       opacity: 1;
       transform: translateY(0) scale(1) rotate(0);
       filter: none;
-      box-shadow: 0 12px 36px color-mix(in srgb, var(--vt-c-custom-text-1) 6%, transparent);
+      /* return to no card-level shadow so background stays uniform */
+      box-shadow: none;
     }
   }
 
