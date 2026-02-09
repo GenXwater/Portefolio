@@ -1,7 +1,6 @@
 <script setup>
     import { ref } from 'vue';
     import { RouterLink, useRouter } from 'vue-router';
-    import IconDocument from './icons/IconDocument.vue';
     import IconBriefcase from './icons/IconBriefcase.vue';
     import IconSend from './icons/IconSend.vue';
     import ButtonPrimary from './ui/ButtonPrimary.vue';
@@ -39,14 +38,10 @@
 
             <!-- Boutons à droite -->
             <div class="header-right">
-                <ButtonSecondary href="#">
-                    <IconDocument />
-                    <span>Mon CV</span>
-                </ButtonSecondary>
-                <ButtonSecondary href="#">
+                <RouterLink to="/services" class="btn-secondary header-link">
                     <IconBriefcase />
                     <span>Mes Services</span>
-                </ButtonSecondary>
+                </RouterLink>
                 <ButtonPrimary @click="goToContact">
                     <IconSend />
                     <span>Me contacter</span>
@@ -67,14 +62,10 @@
             <RouterLink to="/#xp" class="mobile-link" @click="menuOpen = false">Expériences</RouterLink>
             <RouterLink to="/#projects" class="mobile-link" @click="menuOpen = false">Projets</RouterLink>
             <div class="mobile-btns">
-                <ButtonSecondary href="#">
-                    <IconDocument />
-                    <span>Mon CV</span>
-                </ButtonSecondary>
-                <ButtonSecondary href="#">
+                <RouterLink to="/services" class="btn-secondary mobile-link-btn">
                     <IconBriefcase />
                     <span>Mes Services</span>
-                </ButtonSecondary>
+                </RouterLink>
                 <ButtonPrimary @click="goToContact">
                     <IconSend />
                     <span>Me contacter</span>
@@ -277,5 +268,33 @@
         .logo-icon {
             font-size: 20px;
         }
+    }
+
+    /* ensure RouterLink used as button keeps ButtonSecondary look */
+    .btn-secondary {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 50px;
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 1;
+        cursor: pointer;
+        border: none;
+        background: color-mix(in srgb, var(--vt-c-custom-dark-1), var(--vt-c-custom-text-1) 8%);
+        color: var(--color-text);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .btn-secondary :deep(svg) {
+        width: 16px;
+        height: 16px;
+    }
+
+    .btn-secondary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 20px color-mix(in srgb, var(--vt-c-custom-text-1) 25%, transparent);
     }
 </style>
