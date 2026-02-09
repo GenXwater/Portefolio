@@ -99,6 +99,16 @@ import Card from '../components/ui/Card.vue';
     margin: 0 auto;
   }
 
+  /* stagger reveal delays for a punchier entrance */
+  .services-grid > *:nth-child(1) { --reveal-delay: 0ms; }
+  .services-grid > *:nth-child(2) { --reveal-delay: 80ms; }
+  .services-grid > *:nth-child(3) { --reveal-delay: 160ms; }
+  .services-grid > *:nth-child(4) { --reveal-delay: 240ms; }
+  .services-grid > *:nth-child(5) { --reveal-delay: 320ms; }
+  .services-grid > *:nth-child(6) { --reveal-delay: 400ms; }
+  .services-grid > *:nth-child(7) { --reveal-delay: 480ms; }
+  .services-grid > *:nth-child(8) { --reveal-delay: 560ms; }
+
   .service-card {
     --service-card-height: 300px; /* default uniform height (reduced) */
     padding: 26px;

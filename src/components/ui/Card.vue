@@ -65,13 +65,15 @@ onMounted(() => {
     padding: var(--card-padding-top) 20px 20px;
     margin-top: 50px;
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
+    transform: translateY(30px) scale(.98) rotate(-1deg);
+    transition: opacity 0.45s ease, transform 0.45s cubic-bezier(.2,.9,.2,1);
   }
 
   .card.visible {
+    /* stronger reveal animation */
     opacity: 1;
-    transform: translateY(0);
+    animation: reveal-pop 560ms cubic-bezier(.2,.9,.2,1) both;
+    animation-delay: var(--reveal-delay, 0ms);
   }
 
   .card-image {
@@ -88,10 +90,8 @@ onMounted(() => {
     border: 3px solid var(--vt-c-custom-text-1);
     border-radius: 50%;
     overflow: visible;
-    box-shadow:
-      0 0 15px color-mix(in srgb, var(--vt-c-custom-text-1) 40%, transparent),
-      0 0 30px color-mix(in srgb, var(--vt-c-custom-text-2) 25%, transparent);
-    animation: neon-pulse 3.5s ease-in-out infinite;
+    box-shadow: 0 6px 18px color-mix(in srgb, var(--vt-c-custom-text-1) 10%, transparent), 0 0 28px color-mix(in srgb, var(--vt-c-custom-text-2) 18%, transparent);
+    animation: neon-pulse 3.8s ease-in-out infinite;
   }
 
   /* Allow parent pages to override padding/image size. By default the circle
@@ -115,6 +115,27 @@ onMounted(() => {
       box-shadow:
         0 0 18px color-mix(in srgb, var(--vt-c-custom-text-1) 45%, transparent),
         0 0 36px color-mix(in srgb, var(--vt-c-custom-text-2) 30%, transparent);
+    }
+  }
+
+  @keyframes reveal-pop {
+    0% {
+      opacity: 0;
+      transform: translateY(30px) scale(0.96) rotate(-2deg);
+      filter: blur(2px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.03);
+    }
+    60% {
+      opacity: 1;
+      transform: translateY(-8px) scale(1.06) rotate(1deg);
+      filter: none;
+      box-shadow: 0 28px 80px color-mix(in srgb, var(--vt-c-custom-text-1) 10%, transparent);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1) rotate(0);
+      filter: none;
+      box-shadow: 0 12px 36px color-mix(in srgb, var(--vt-c-custom-text-1) 6%, transparent);
     }
   }
 
