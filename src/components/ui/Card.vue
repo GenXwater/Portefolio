@@ -97,7 +97,7 @@ onMounted(() => {
   /* Allow parent pages to override padding/image size. By default the circle
      is centered on the top border (half-overlapping). */
 
-  .card-image ::v-deep img {
+  .card-image :deep(img) {
     max-width: 70%;
     max-height: 70%;
     object-fit: contain;
