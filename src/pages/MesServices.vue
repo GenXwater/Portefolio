@@ -100,24 +100,51 @@ import Card from '../components/ui/Card.vue';
   }
 
   .service-card {
+    --service-card-height: 300px; /* default uniform height (reduced) */
     padding: 26px;
     border-radius: 14px;
-    background: transparent; /* no extra background */
+    background: transparent;
     color: var(--color-text);
     transition: transform 0.28s ease, box-shadow 0.28s ease;
     position: relative;
     overflow: visible; /* allow the circular image to overlap the border */
     border: 1px solid color-mix(in srgb, var(--accent), transparent 70%);
+    min-height: var(--service-card-height);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 12px;
+    padding-top: calc(var(--card-padding-top, 36px) + 8px);
   }
 
-  .service-card h3 {
-    margin-bottom: 10px;
+  .service-card .card-title {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 800;
     color: var(--accent);
+    letter-spacing: -0.2px;
   }
 
-  .service-card p { color: var(--text-muted); }
+  .service-card .card-description {
+    color: var(--text-muted);
+    max-width: 560px;
+    font-weight: 600;
+    line-height: 1.6;
+    margin: 6px 0 0 0;
+    padding: 0 8px;
+  }
 
-  .service-icon { font-size: 28px; line-height: 1; }
+  .service-icon { font-size: 28px; line-height: 1; display:inline-block; }
+
+  @media (max-width: 1000px) {
+    .service-card { --service-card-height: 280px; }
+  }
+
+  @media (max-width: 700px) {
+    .service-card { --service-card-height: 240px; }
+  }
 
   .service-card:hover {
     transform: translateY(-8px);
