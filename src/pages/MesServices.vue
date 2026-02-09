@@ -2,6 +2,14 @@
 import Card from '../components/ui/Card.vue';
 import ButtonPrimary from '../components/ui/ButtonPrimary.vue';
 import IconSend from '../components/icons/IconSend.vue';
+import IconCog from '../components/icons/IconCog.vue';
+import IconBrain from '../components/icons/IconBrain.vue';
+import IconDocument from '../components/icons/IconDocument.vue';
+import IconPlug from '../components/icons/IconPlug.vue';
+import IconConstruction from '../components/icons/IconConstruction.vue';
+import IconLaptop from '../components/icons/IconLaptop.vue';
+import IconTools from '../components/icons/IconTools.vue';
+import IconSync from '../components/icons/IconSync.vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
@@ -17,49 +25,49 @@ const goToContact = () => router.push('/contact');
 
     <div class="services-grid">
       <Card class="service-card" style="--card-image-size:56px; --card-padding-top:36px;">
-        <template #image><span class="service-icon">⚙️</span></template>
+        <template #image><IconCog /></template>
         <template #title>Automatisation complète avec n8n</template>
         Automatisez les tâches répétitives. Scénarios robustes sur mesure pour connecter vos outils et gagner des heures chaque semaine.
       </Card>
 
       <Card class="service-card" style="--card-image-size:56px; --card-padding-top:36px;">
-        <template #image><span class="service-icon">🧠</span></template>
+        <template #image><IconBrain /></template>
         <template #title>Chatbots & agents IA personnalisés</template>
         Assistants intelligents 24/7 — réponses clients, traitement de documents, ou actions métiers basées sur GPT/Claude.
       </Card>
 
       <Card class="service-card" style="--card-image-size:56px; --card-padding-top:36px;">
-        <template #image><span class="service-icon">📄</span></template>
+        <template #image><IconDocument /></template>
         <template #title>Extraction intelligente de documents</template>
         Lecture, résumé et extraction de données depuis PDF/Word pour rendre vos fichiers immédiatement exploitables.
       </Card>
 
       <Card class="service-card" style="--card-image-size:56px; --card-padding-top:36px;">
-        <template #image><span class="service-icon">🔌</span></template>
+        <template #image><IconPlug /></template>
         <template #title>Agents API intelligents</template>
         Orchestration d'API et agents autonomes qui dialoguent avec vos services et automatisent des workflows complexes.
       </Card>
 
       <Card class="service-card" style="--card-image-size:56px; --card-padding-top:36px;">
-        <template #image><span class="service-icon">🚧</span></template>
+        <template #image><IconConstruction /></template>
         <template #title>IA & automation pour BTP / logistique</template>
         Solutions terrain adaptées au suivi chantier, logistique et opérations, conçues pour la robustesse et l'échelle.
       </Card>
 
       <Card class="service-card" style="--card-image-size:56px; --card-padding-top:36px;">
-        <template #image><span class="service-icon">💻</span></template>
+        <template #image><IconLaptop /></template>
         <template #title>Sites web & outils métiers</template>
         Sites vitrines et micro-apps intégrées, rapides et prêtes à connecter CRM/IA/automation pour convertir vos visiteurs.
       </Card>
 
       <Card class="service-card" style="--card-image-size:56px; --card-padding-top:36px;">
-        <template #image><span class="service-icon">🛠️</span></template>
+        <template #image><IconTools /></template>
         <template #title>Développement d'outils métiers IA</template>
         Copilotes internes et micro-apps pour rédiger, classer et piloter vos opérations.
       </Card>
 
       <Card class="service-card" style="--card-image-size:56px; --card-padding-top:36px;">
-        <template #image><span class="service-icon">🔁</span></template>
+        <template #image><IconSync /></template>
         <template #title>Workflows IA pour PME</template>
         Automatisation des leads, relances, devis, RDV et suivi clients pour fluidifier vos opérations.
       </Card>
