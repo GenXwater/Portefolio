@@ -51,7 +51,6 @@
         height: 100%;
         object-fit: cover;
         display: block;
-        transition: opacity 1.5s ease;
     }
 
     .profile-img-dark {
