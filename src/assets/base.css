@@ -11,6 +11,8 @@
   /* semantic variables utilisées par le projet */
   --color-background: var(--vt-c-custom-dark-1);
   --color-text: var(--vt-c-text-dark-2);
+  /* social icons color (adapts to theme) */
+  --social-icon-color: var(--vt-c-custom-text-1);
 }
 
 /* override for dark mode */
@@ -21,6 +23,8 @@
 
     --color-background: var(--vt-c-custom-dark-1);
     --color-text: var(--vt-c-text-dark-2);
+    /* icons should be white in dark mode */
+    --social-icon-color: #ffffff;
   }
 }
 

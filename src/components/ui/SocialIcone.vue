@@ -15,7 +15,7 @@ const iconStyle = computed(() => {
         display: 'inline-block',
         marginRight: '10px',
         borderRadius: '7px',
-        backgroundColor: 'var(--vt-c-custom-text-1)',
+        backgroundColor: 'var(--social-icon-color)',
         WebkitMaskImage: `url(${url})`,
         WebkitMaskRepeat: 'no-repeat',
         WebkitMaskSize: 'contain',
