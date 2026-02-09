@@ -110,15 +110,11 @@
     }
 
     /* prefer light theme: show the light image and hide the dark one */
-    @media (prefers-color-scheme: light) {
-        .profile-img-light { opacity: 1; }
-        .profile-img-dark { opacity: 0; }
-    }
+    .light-mode .profile-img-light { opacity: 1; }
+    .light-mode .profile-img-dark { opacity: 0; }
 
-    /* prefer dark theme: ensure dark image visible (redundant but explicit) */
-    @media (prefers-color-scheme: dark) {
-        .profile-img-light { opacity: 0; }
-        .profile-img-dark { opacity: 1; }
-    }
+    /* prefer dark theme: ensure dark image visible */
+    .dark-mode .profile-img-light { opacity: 0; }
+    .dark-mode .profile-img-dark { opacity: 1; }
 
 </style>
