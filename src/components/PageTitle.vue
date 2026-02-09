@@ -1,5 +1,5 @@
 <script setup>
-    import SocialIcone from './SocialIcone.vue';
+    import SocialIcone from './ui/SocialIcone.vue';
 </script>
 
 <template>
@@ -11,9 +11,7 @@
                 Prophète en informatique.
             </p>
             <div id="social">
-                <a href="https://github.com/GenXwater" target="_blank">
-                    <img class="social-img" src="../assets/icons8-github-64.png" alt="github" width="32px" />
-                </a> <!-- Exemple basique -->
+                <SocialIcone img="icons8-github-64" alt="github" link="https://github.com/GenXwater" />
                 <SocialIcone img="icons8-linkedin-64" alt="linkedin" link="https://fr.linkedin.com/in/louis-genty-023708209" />
                 <!-- Exemple avec component et props intelligents -->
             </div>
