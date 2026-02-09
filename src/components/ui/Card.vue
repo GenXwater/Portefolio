@@ -55,8 +55,8 @@ onMounted(() => {
 
 <style scoped>
   .card {
-    --card-padding-top: 70px;
     --card-image-size: 90px;
+    --card-padding-top: calc(var(--card-image-size) / 2 + 16px);
     position: relative;
     display: flex;
     flex-direction: column;
@@ -94,18 +94,8 @@ onMounted(() => {
     animation: neon-pulse 3.5s ease-in-out infinite;
   }
 
-  /* When card is used in a compact/service context (e.g. .service-card),
-     keep the circle inside the card so it won't be clipped by overflow:hidden. */
-  .card.service-card {
-    --card-padding-top: 36px;
-  }
-
-  .card.service-card .card-image {
-    top: 18px;
-    transform: translate(-50%, 0);
-    width: calc(var(--card-image-size) * 0.7);
-    height: calc(var(--card-image-size) * 0.7);
-  }
+  /* Allow parent pages to override padding/image size. By default the circle
+     is centered on the top border (half-overlapping). */
 
   .card-image ::v-deep img {
     max-width: 70%;

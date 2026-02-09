@@ -12,49 +12,49 @@ import Card from '../components/ui/Card.vue';
     <div class="services-grid">
       <Card class="service-card" :observe="false" style="--card-image-size:56px; --card-padding-top:36px;">
         <template #image><span class="service-icon">⚙️</span></template>
-        <template #title>⚙️ Automatisation complète avec n8n</template>
+        <template #title>Automatisation complète avec n8n</template>
         Automatisez les tâches répétitives. Scénarios robustes sur mesure pour connecter vos outils et gagner des heures chaque semaine.
       </Card>
 
       <Card class="service-card" :observe="false" style="--card-image-size:56px; --card-padding-top:36px;">
         <template #image><span class="service-icon">🧠</span></template>
-        <template #title>🧠 Chatbots & agents IA personnalisés</template>
+        <template #title>Chatbots & agents IA personnalisés</template>
         Assistants intelligents 24/7 — réponses clients, traitement de documents, ou actions métiers basées sur GPT/Claude.
       </Card>
 
       <Card class="service-card" :observe="false" style="--card-image-size:56px; --card-padding-top:36px;">
         <template #image><span class="service-icon">📄</span></template>
-        <template #title>📄 Extraction intelligente de documents</template>
+        <template #title>Extraction intelligente de documents</template>
         Lecture, résumé et extraction de données depuis PDF/Word pour rendre vos fichiers immédiatement exploitables.
       </Card>
 
       <Card class="service-card" :observe="false" style="--card-image-size:56px; --card-padding-top:36px;">
         <template #image><span class="service-icon">🔌</span></template>
-        <template #title>🔌 Agents API intelligents</template>
+        <template #title>Agents API intelligents</template>
         Orchestration d'API et agents autonomes qui dialoguent avec vos services et automatisent des workflows complexes.
       </Card>
 
       <Card class="service-card" :observe="false" style="--card-image-size:56px; --card-padding-top:36px;">
         <template #image><span class="service-icon">🚧</span></template>
-        <template #title>🚧 IA & automation pour BTP / logistique</template>
+        <template #title>IA & automation pour BTP / logistique</template>
         Solutions terrain adaptées au suivi chantier, logistique et opérations, conçues pour la robustesse et l'échelle.
       </Card>
 
       <Card class="service-card" :observe="false" style="--card-image-size:56px; --card-padding-top:36px;">
         <template #image><span class="service-icon">💻</span></template>
-        <template #title>💻 Sites web & outils métiers</template>
+        <template #title>Sites web & outils métiers</template>
         Sites vitrines et micro-apps intégrées, rapides et prêtes à connecter CRM/IA/automation pour convertir vos visiteurs.
       </Card>
 
       <Card class="service-card" :observe="false" style="--card-image-size:56px; --card-padding-top:36px;">
         <template #image><span class="service-icon">🛠️</span></template>
-        <template #title>🛠️ Développement d'outils métiers IA</template>
+        <template #title>Développement d'outils métiers IA</template>
         Copilotes internes et micro-apps pour rédiger, classer et piloter vos opérations.
       </Card>
 
       <Card class="service-card" :observe="false" style="--card-image-size:56px; --card-padding-top:36px;">
         <template #image><span class="service-icon">🔁</span></template>
-        <template #title>🔁 Workflows IA pour PME</template>
+        <template #title>Workflows IA pour PME</template>
         Automatisation des leads, relances, devis, RDV et suivi clients pour fluidifier vos opérations.
       </Card>
     </div>
@@ -106,7 +106,7 @@ import Card from '../components/ui/Card.vue';
     color: var(--color-text);
     transition: transform 0.28s ease, box-shadow 0.28s ease;
     position: relative;
-    overflow: hidden;
+    overflow: visible; /* allow the circular image to overlap the border */
     border: 1px solid color-mix(in srgb, var(--accent), transparent 70%);
   }
 
