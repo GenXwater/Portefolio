@@ -5,8 +5,8 @@
 
   /* variables custom par moi (par défaut version claire) */
   --vt-c-custom-dark-1: #f3f5f9; /* surface / fond clair */
-  --vt-c-custom-text-1: #81aaff; /* accent (garde la même couleur) */
-  --vt-c-custom-text-2: #e27e7f; /* accent secondaire */
+  --vt-c-custom-text-1: #60FCFC; /* accent (garde la même couleur) */
+  --vt-c-custom-text-2: #E0A84F; /* accent secondaire */
 
   /* semantic variables utilisées par le projet */
   --color-background: var(--vt-c-custom-dark-1);
@@ -18,13 +18,13 @@
 /* override for dark mode */
 @media (prefers-color-scheme: dark) {
   :root {
-    --vt-c-custom-dark-1: #222538; /* fond sombre original */
-    --vt-c-text-dark-2: rgba(235, 235, 235, 0.64); /* texte clair pour fond sombre */
+    --vt-c-custom-dark-1: #082626; /* fond sombre original */
+    --vt-c-text-dark-2: #E6F2F2; /* texte clair pour fond sombre */
 
     --color-background: var(--vt-c-custom-dark-1);
     --color-text: var(--vt-c-text-dark-2);
     /* icons should be white in dark mode */
-    --social-icon-color: #ffffff;
+    --social-icon-color: #E0A84F;
   }
 }
 
