@@ -60,7 +60,7 @@ onMounted(() => {
     position: relative;
     display: flex;
     flex-direction: column;
-    background: color-mix(in srgb, var(--vt-c-custom-dark-1), var(--vt-c-custom-text-1) 5%);
+    background: var(--card-bg, color-mix(in srgb, var(--vt-c-custom-dark-1), var(--vt-c-custom-text-1) 5%));
     border-radius: 12px;
     padding: var(--card-padding-top) 20px 20px;
     margin-top: 50px;
