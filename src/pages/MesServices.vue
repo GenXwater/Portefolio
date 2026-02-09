@@ -138,11 +138,11 @@ const goToContact = () => router.push('/contact');
     padding-top: calc(var(--card-padding-top, 36px) + 8px);
   }
 
-  .service-card .card-title {
+  .service-card :deep(.card-title) {
     margin: 0;
     font-size: 20px;
     font-weight: 800;
-    color: var(--accent);
+    color: var(--accent-2);
     letter-spacing: -0.2px;
   }
 
