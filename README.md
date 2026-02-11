@@ -26,7 +26,97 @@ NETLIFY_SMTP_PASS=votre_app_password  # 16 chars, ❗RETIREZ LES ESAPCES SI IL Y
 EMAIL_TO=destinataire@exemple.com # ou le même mail que NETLIFY_SMTP_USER
 ```
 
-Tester la connexion SMTP (chargez d'abord les vars) :
+🧪 Tester la connexion SMTP (chargez d'abord les vars) :
+
+Pour vérifier que la configuration SMTP fonctionne correctement en local, un script de test peut être utilisé.
+
+Exemple de script (usage local uniquement)
+
+Créer un fichier (non versionné) par exemple :
+
+scripts-local/test_smtp.js
+
+
+Avec le contenu :
+
+``` javascript
+import nodemailer from "nodemailer";
+
+(async () => {
+  if (process.env.NETLIFY) {
+    throw new Error("SMTP test must not run on Netlify.");
+  }
+
+  const transporter = nodemailer.createTransport({
+    host: process.env.NETLIFY_SMTP_HOST,
+    port: parseInt(process.env.NETLIFY_SMTP_PORT || "587", 10),
+    secure: process.env.NETLIFY_SMTP_SECURE === "true",
+    auth: {
+      user: process.env.NETLIFY_SMTP_USER,
+      pass: process.env.NETLIFY_SMTP_PASS,
+    },
+  });
+
+  try {
+    await transporter.verify();
+    console.log("✅ SMTP configuration OK");
+  } catch (err) {
+    console.error("❌ SMTP configuration failed:", err.message);
+  }
+})();
+```
+
+Exécution en local
+
+Avec les variables définies dans .env :
+
+node scripts-local/test_smtp.js
+
+🔒 Pourquoi ce fichier ne doit pas être en production
+
+Ce script :
+
+utilise des variables sensibles (SMTP)
+
+peut afficher des informations de configuration
+
+peut être scanné lors du build Netlify
+
+Netlify bloque automatiquement les déploiements lorsqu’un secret risque d’être exposé dans les logs ou les artefacts.
+
+Pour cette raison :
+
+❌ Ce fichier ne doit jamais être présent dans le dépôt principal
+
+❌ Il ne doit jamais être inclus dans le build
+
+❌ Il ne doit pas être exécuté en CI/CD
+
+✅ Bonnes pratiques
+
+Le script de test SMTP doit :
+
+ - être stocké hors du dossier src/
+
+ - être ignoré via .gitignore
+
+ - être utilisé uniquement en local
+
+Exemple dans .gitignore :
+
+scripts-local/
+.env
+
+
+Les variables SMTP doivent être utilisées uniquement dans les Netlify Functions, jamais côté front.
+
+Lancer localement (Netlify CLI pour fonctions) :
+
+```sh
+npx netlify dev
+```
+
+puis charger les vars et lancer le script:
 
 ```sh
 set -a && source .env && set +a
@@ -34,12 +124,6 @@ node test-smtp.js
 ```
 
 Si vous voyez `SMTP verify OK — credentials accepted.`, passez à la suite.
-
-Lancer localement (Netlify CLI pour fonctions) :
-
-```sh
-npx netlify dev
-```
 
 Tester le endpoint (adapter le port):
 
