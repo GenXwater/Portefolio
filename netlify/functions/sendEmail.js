@@ -51,7 +51,7 @@ export const handler = async (event) => {
 	const to = process.env.EMAIL_TO || process.env.RECEIVER_EMAIL;
 
 	if (!host || !user || !pass || !to) {
-		console.error('SMTP not configured', { host, user, to });
+		console.error('SMTP not configured');
 		return { statusCode: 500, headers, body: JSON.stringify({ error: 'SMTP not configured' }) };
 	}
 

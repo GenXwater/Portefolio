@@ -18,7 +18,7 @@ npm run dev
 Configurer `.env` (ex. à la racine, et l'ajouter dans le gitignore) :
 
 ```env
-NETLIFY_SMTP_HOST=smtp.gmail.com
+NETLIFY_SMTP_HOST=smtp.exemple.com
 NETLIFY_SMTP_PORT=587
 NETLIFY_SMTP_SECURE=false
 NETLIFY_SMTP_USER=votre.email@gmail.com
