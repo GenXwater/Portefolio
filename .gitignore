@@ -37,3 +37,4 @@ __screenshots__/
 
 .netlify
 .env
+test_smtp.js

@@ -92,7 +92,7 @@ export const handler = async (event) => {
 		const mailOptions = {
 			from: `"Portfolio Contact" <${user}>`,
 			to,
-			replyTo: email,
+			// replyTo: email,
 			subject,
 			text: `From: ${name} <${email}>\n\n${message}`,
 			html,
