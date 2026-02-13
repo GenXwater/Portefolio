@@ -151,7 +151,7 @@
             const payload = await res.json().catch(() => null);
 
             if (!res.ok) {
-                const msg = payload && (payload.error || payload.details) ? (payload.error || payload.details) : 'Erreur serveur';
+                const msg = payload && (payload.details || payload.error) ? (payload.details || payload.error) : 'Erreur serveur';
                 throw new Error(msg);
             }
 
