@@ -2,13 +2,14 @@
   <div class="theme-switch">
     <input type="checkbox" id="theme-toggle" v-model="isDark" />
     <label for="theme-toggle" class="switch-label">
-      <span class="switch-slider"></span>
+      <RetroSwitchIllustration :is-on="isDark" />
     </label>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted, watch } from 'vue';
+import RetroSwitchIllustration from './ui/RetroSwitchIllustration.vue';
 
 const isDark = ref(false);
 
@@ -48,51 +49,38 @@ onMounted(() => {
 .theme-switch {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 #theme-toggle {
-  display: none;
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .switch-label {
   position: relative;
-  width: 40px;
-  height: 40px;
-  background: var(--vt-c-custom-dark-1);
-  border-radius: 50%;
+  width: 70px;
+  height: 70px;
   cursor: pointer;
-  border: 2px solid var(--vt-c-custom-text-1);
-  box-shadow: 0 0 10px var(--vt-c-custom-text-1);
-  transition: all 0.3s ease;
+  user-select: none;
   display: flex;
   align-items: center;
   justify-content: center;
+  --switch-press-offset: 0px;
 }
 
-.switch-slider {
-  width: 16px;
-  height: 16px;
-  background: var(--vt-c-custom-text-1);
-  border-radius: 50%;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 5px var(--vt-c-custom-text-1);
+.switch-label :deep(.retro-switch-svg) {
+  transition: transform 240ms ease, filter 240ms ease;
 }
 
-#theme-toggle:checked + .switch-label {
-  background: var(--vt-c-custom-text-2);
-  box-shadow: 0 0 20px var(--vt-c-custom-text-2);
+#theme-toggle:active + .switch-label {
+  --switch-press-offset: 2px;
 }
 
-#theme-toggle:checked + .switch-label .switch-slider {
-  background: var(--vt-c-custom-text-2);
-  box-shadow: 0 0 10px var(--vt-c-custom-text-2);
-}
-
-.switch-label:hover {
-  box-shadow: 0 0 15px var(--vt-c-custom-text-1);
-}
-
-#theme-toggle:checked + .switch-label:hover {
-  box-shadow: 0 0 25px var(--vt-c-custom-text-2);
+#theme-toggle:focus-visible + .switch-label {
+  outline: 2px solid color-mix(in srgb, var(--vt-c-custom-text-1) 65%, white);
+  outline-offset: 3px;
+  border-radius: 12px;
 }
 </style>
