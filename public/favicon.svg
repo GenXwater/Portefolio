@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">Louis.dev favicon</title>
+  <desc id="desc">Icône transparente avec un L jaune effet néon.</desc>
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f9ea91"/>
+      <stop offset="100%" stop-color="#d7a73f"/>
+    </linearGradient>
+    <filter id="glow" x="-70%" y="-70%" width="240%" height="240%">
+      <feDropShadow dx="0" dy="0" stdDeviation="1.4" flood-color="#fff3b3" flood-opacity="1"/>
+      <feDropShadow dx="0" dy="0" stdDeviation="3.6" flood-color="#f3d06a" flood-opacity="0.9"/>
+      <feDropShadow dx="0" dy="0" stdDeviation="6.2" flood-color="#d7a73f" flood-opacity="0.75"/>
+      <feDropShadow dx="0" dy="0" stdDeviation="9" flood-color="#d7a73f" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <path
+    d="M14 8H26V44H54V56H14V8Z"
+    fill="url(#gold)"
+    filter="url(#glow)"
+  />
+</svg>
