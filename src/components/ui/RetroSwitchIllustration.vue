@@ -63,8 +63,8 @@ const glowId = `retro-glow-${uid}`;
 
 <style scoped>
 .retro-switch-svg {
-  width: 70px;
-  height: 70px;
+  width: 50px;
+  height: 50px;
   display: block;
   overflow: visible;
   filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.35));

@@ -4,7 +4,6 @@
     import IconBriefcase from './icons/IconBriefcase.vue';
     import IconSend from './icons/IconSend.vue';
     import ButtonPrimary from './ui/ButtonPrimary.vue';
-    import ButtonSecondary from './ui/ButtonSecondary.vue';
     import ThemeSwitch from './ThemeSwitch.vue';
 
     const router = useRouter();
@@ -37,13 +36,9 @@
                 </nav>
             </div>
 
-            <!-- Switch thème au centre -->
-            <div class="header-center">
-                <ThemeSwitch />
-            </div>
-
             <!-- Boutons à droite -->
             <div class="header-right">
+                <ThemeSwitch />
                 <RouterLink to="/services" class="btn-secondary header-link">
                     <IconBriefcase />
                     <span>Mes Services</span>
@@ -101,7 +96,6 @@
         height: 70px;
         display: flex;
         align-items: center;
-        justify-content: space-between;
     }
 
     /* ===== PARTIE GAUCHE ===== */
@@ -176,6 +170,7 @@
         display: flex;
         align-items: center;
         gap: 12px;
+        margin-left: auto;
     }
 
     /* ===== MENU BURGER ===== */
@@ -190,6 +185,7 @@
         border: none;
         cursor: pointer;
         padding: 0;
+        margin-left: 12px;
     }
 
     .burger-menu span {
@@ -243,13 +239,19 @@
         margin-top: 20px;
     }
 
+    .mobile-link-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
     /* ===== RESPONSIVE ===== */
     @media screen and (max-width: 905px) {
         .nav-links {
             display: none;
         }
 
-        .header-right {
+        .header-right .header-link,
+        .header-right :deep(button) {
             display: none;
         }
 

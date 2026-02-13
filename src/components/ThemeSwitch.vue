@@ -60,8 +60,8 @@ onMounted(() => {
 
 .switch-label {
   position: relative;
-  width: 70px;
-  height: 70px;
+  width: 50px;
+  height: 50px;
   cursor: pointer;
   user-select: none;
   display: flex;
