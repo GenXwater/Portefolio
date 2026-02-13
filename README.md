@@ -1,11 +1,6 @@
-# Portfolio
-
-Mon portfolio personnel développé avec Vue 3 et Vite.
-
-
 <!-- BADGES:BEGIN -->
 
-<p align="center">
+<p align="right">
 
 <img src="https://img.shields.io/badge/PROJET-TERMIN%C3%89-00C853?style=for-the-badge&labelColor=0B0F17&logo=verizon&logoColor=white" alt="Projet Terminé"/>
 
@@ -15,6 +10,9 @@ Mon portfolio personnel développé avec Vue 3 et Vite.
 
 <!-- BADGES:END -->
 
+# Portfolio
+
+Mon portfolio personnel développé avec Vue 3 et Vite.
 
 ## Installation
 
