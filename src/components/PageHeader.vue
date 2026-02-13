@@ -1,5 +1,5 @@
 <script setup>
-    import { ref } from 'vue';
+    import { ref, onMounted, onBeforeUnmount } from 'vue';
     import { RouterLink, useRouter } from 'vue-router';
     import IconBriefcase from './icons/IconBriefcase.vue';
     import IconSend from './icons/IconSend.vue';
@@ -8,6 +8,7 @@
 
     const router = useRouter();
     const menuOpen = ref(false);
+    const headerRef = ref(null);
 
     const toggleMenu = () => {
         menuOpen.value = !menuOpen.value;
@@ -17,10 +18,28 @@
         menuOpen.value = false;
         router.push('/contact');
     };
+
+    const handleClickOutside = (event) => {
+        if (!menuOpen.value) return;
+        if (!headerRef.value) return;
+
+        const target = event.target;
+        if (target instanceof Node && !headerRef.value.contains(target)) {
+            menuOpen.value = false;
+        }
+    };
+
+    onMounted(() => {
+        document.addEventListener('click', handleClickOutside);
+    });
+
+    onBeforeUnmount(() => {
+        document.removeEventListener('click', handleClickOutside);
+    });
 </script>
 
 <template>
-    <header class="header-wrapper">
+    <header ref="headerRef" class="header-wrapper">
         <div class="header-content">
             <!-- Logo / Identité à gauche -->
             <div class="header-left">
