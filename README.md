@@ -2,6 +2,20 @@
 
 Mon portfolio personnel développé avec Vue 3 et Vite.
 
+
+<!-- BADGES:BEGIN -->
+
+<p align="center">
+
+<img src="https://img.shields.io/badge/PROJET-TERMIN%C3%89-00C853?style=for-the-badge&labelColor=0B0F17&logo=verizon&logoColor=white" alt="Projet Terminé"/>
+
+<img src="https://img.shields.io/badge/D%C3%89PLOY%C3%89-OUI-00C853?style=for-the-badge&labelColor=0B0F17&logo=netlify&logoColor=white" alt="Déployé Oui"/>
+
+</p>
+
+<!-- BADGES:END -->
+
+
 ## Installation
 
 ```sh
