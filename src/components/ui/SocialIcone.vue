@@ -8,7 +8,7 @@ const props = defineProps({
 import { computed } from 'vue'
 
 const iconStyle = computed(() => {
-    const url = `/src/assets/${props.img}.png`
+    const url = new URL(`../../assets/${props.img}.png`, import.meta.url).href
     return {
         width: '32px',
         height: '32px',
@@ -30,7 +30,7 @@ const iconStyle = computed(() => {
 </script>
 
 <template>
-    <a :href="props.link" target="_blank" :aria-label="props.alt">
+    <a :href="props.link" target="_blank" rel="noopener noreferrer" :aria-label="props.alt">
         <span class="social-icon" :style="iconStyle"></span>
     </a>
 </template>

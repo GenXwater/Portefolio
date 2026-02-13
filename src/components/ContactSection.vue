@@ -6,8 +6,14 @@
     import IconClock from './icons/IconClock.vue';
     import ButtonPrimary from './ui/ButtonPrimary.vue';
 
-    defineProps({
-        compact: { type: Boolean, default: false }
+    const props = defineProps({
+        compact: { type: Boolean, default: false },
+        headingLevel: { type: Number, default: 2 }
+    });
+
+    const headingTag = computed(() => {
+        const level = Math.min(6, Math.max(1, props.headingLevel));
+        return `h${level}`;
     });
 
     // Calcul du nombre de cafés selon l'heure
@@ -178,11 +184,11 @@
 </script>
 
 <template>
-    <section id="contact" class="contact-section" :class="{ 'compact': compact }">
+    <section id="contact" class="contact-section" :class="{ 'compact': props.compact }">
         <div class="contact-container">
             <!-- En-tête -->
             <div class="contact-header">
-                <h2 class="text-highlight-1 section-title">Me contacter</h2>
+                <component :is="headingTag" class="text-highlight-1 section-title">Me contacter</component>
                 <p class="contact-subtitle">
                     Une idée de projet ? Une question ? N'hésitez pas à me contacter, 
                     je vous répondrai dans les plus brefs délais.

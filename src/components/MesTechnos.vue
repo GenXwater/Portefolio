@@ -14,18 +14,18 @@ const handleMouseMove = (event) => {
     <div id="skills">
         <h2 class="text-highlight-1 section-title">Mes technos préférées</h2>
         <div id="icons-list">
-            <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank" class="techno-container" @mousemove="handleMouseMove"><i class="techno-icon devicon-html5-plain"></i> <br/> <span>HTML</span></a>
-            <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank" class="techno-container" @mousemove="handleMouseMove"><i class="techno-icon devicon-css3-plain"></i> <br/> <span>CSS</span></a>
-            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" class="techno-container" @mousemove="handleMouseMove"><i class="techno-icon devicon-javascript-plain"></i> <br/> <span>JavaScript</span></a>
-            <a href="https://www.typescriptlang.org/docs/" target="_blank" class="techno-container" @mousemove="handleMouseMove"><i class="techno-icon devicon-typescript-plain"></i> <br/> <span>TypeScript</span></a>
-            <a href="https://docs.python.org/3/" target="_blank" class="techno-container" @mousemove="handleMouseMove"><i class="techno-icon devicon-python-plain"></i> <br/> <span>Python</span></a>
-            <a href="https://flask.palletsprojects.com/" target="_blank" class="techno-container" @mousemove="handleMouseMove"><i class="techno-icon devicon-flask-original"></i> <br/> <span>Flask</span></a>
-            <a href="https://tailwindcss.com/docs" target="_blank" class="techno-container" @mousemove="handleMouseMove"><i class="techno-icon devicon-tailwindcss-original"></i> <br/> <span>TailwindCSS</span></a>
-            <a href="https://dev.mysql.com/doc/" target="_blank" class="techno-container" @mousemove="handleMouseMove"><i class="techno-icon devicon-mysql-original"></i> <br/> <span>MySQL</span></a>
-            <a href="https://www.mongodb.com/docs/" target="_blank" class="techno-container" @mousemove="handleMouseMove"><i class="techno-icon devicon-mongodb-plain"></i> <br/> <span>MongoDB</span></a>
-            <a href="https://nodejs.org/docs/" target="_blank" class="techno-container" @mousemove="handleMouseMove"><i class="techno-icon devicon-nodejs-plain"></i> <br/> <span>Node.js</span></a>
-            <a href="https://vuejs.org/guide/" target="_blank" class="techno-container" @mousemove="handleMouseMove"><i class="techno-icon devicon-vuejs-plain"></i> <br/> <span>Vue.js</span></a>
-            <a href="https://git-scm.com/doc" target="_blank" class="techno-container" @mousemove="handleMouseMove"><i class="techno-icon devicon-git-plain"></i> <br/> <span>Git</span></a>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank" rel="noopener noreferrer" class="techno-container" @mousemove="handleMouseMove"><i class="techno-icon devicon-html5-plain"></i> <br/> <span>HTML</span></a>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank" rel="noopener noreferrer" class="techno-container" @mousemove="handleMouseMove"><i class="techno-icon devicon-css3-plain"></i> <br/> <span>CSS</span></a>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noopener noreferrer" class="techno-container" @mousemove="handleMouseMove"><i class="techno-icon devicon-javascript-plain"></i> <br/> <span>JavaScript</span></a>
+            <a href="https://www.typescriptlang.org/docs/" target="_blank" rel="noopener noreferrer" class="techno-container" @mousemove="handleMouseMove"><i class="techno-icon devicon-typescript-plain"></i> <br/> <span>TypeScript</span></a>
+            <a href="https://docs.python.org/3/" target="_blank" rel="noopener noreferrer" class="techno-container" @mousemove="handleMouseMove"><i class="techno-icon devicon-python-plain"></i> <br/> <span>Python</span></a>
+            <a href="https://flask.palletsprojects.com/" target="_blank" rel="noopener noreferrer" class="techno-container" @mousemove="handleMouseMove"><i class="techno-icon devicon-flask-original"></i> <br/> <span>Flask</span></a>
+            <a href="https://tailwindcss.com/docs" target="_blank" rel="noopener noreferrer" class="techno-container" @mousemove="handleMouseMove"><i class="techno-icon devicon-tailwindcss-original"></i> <br/> <span>TailwindCSS</span></a>
+            <a href="https://dev.mysql.com/doc/" target="_blank" rel="noopener noreferrer" class="techno-container" @mousemove="handleMouseMove"><i class="techno-icon devicon-mysql-original"></i> <br/> <span>MySQL</span></a>
+            <a href="https://www.mongodb.com/docs/" target="_blank" rel="noopener noreferrer" class="techno-container" @mousemove="handleMouseMove"><i class="techno-icon devicon-mongodb-plain"></i> <br/> <span>MongoDB</span></a>
+            <a href="https://nodejs.org/docs/" target="_blank" rel="noopener noreferrer" class="techno-container" @mousemove="handleMouseMove"><i class="techno-icon devicon-nodejs-plain"></i> <br/> <span>Node.js</span></a>
+            <a href="https://vuejs.org/guide/" target="_blank" rel="noopener noreferrer" class="techno-container" @mousemove="handleMouseMove"><i class="techno-icon devicon-vuejs-plain"></i> <br/> <span>Vue.js</span></a>
+            <a href="https://git-scm.com/doc" target="_blank" rel="noopener noreferrer" class="techno-container" @mousemove="handleMouseMove"><i class="techno-icon devicon-git-plain"></i> <br/> <span>Git</span></a>
         </div>
     </div>
 </template>

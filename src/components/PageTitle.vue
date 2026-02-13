@@ -5,14 +5,33 @@
 <template>
     <div id="top-line">
         <div id="profile-img">
-            <img class="profile-img-img profile-img-dark" src="../assets/profil_view.jpeg" alt="Louis GENTY" draggable="false">
-            <img class="profile-img-img profile-img-light" src="../assets/profil_wiew_clair.png" alt="Louis GENTY" draggable="false">
+            <img
+                class="profile-img-img profile-img-dark"
+                src="../assets/profil_view.jpeg"
+                alt="Portrait de Louis GENTY"
+                draggable="false"
+                width="300"
+                height="300"
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
+            >
+            <img
+                class="profile-img-img profile-img-light"
+                src="../assets/profil_wiew_clair.png"
+                alt="Portrait de Louis GENTY"
+                draggable="false"
+                width="300"
+                height="300"
+                loading="eager"
+                decoding="async"
+            >
         </div>
         <div id="line">
-            <p>
+            <h1>
                 Je suis <span class="text-highlight-1">Louis GENTY</span>, <br/>
                 Prophète en informatique.
-            </p>
+            </h1>
             <div id="social">
                 <SocialIcone img="icons8-github-64" alt="github" link="https://github.com/GenXwater" />
                 <SocialIcone img="icons8-linkedin-64" alt="linkedin" link="https://fr.linkedin.com/in/louis-genty-023708209" />
@@ -65,12 +84,13 @@
         text-align: center;
     }
 
-    #top-line p {
+    #top-line h1 {
         font-size: 42px;
         line-height: 60px;
+        font-weight: 400;
     }
 
-    #top-line p span {
+    #top-line h1 span {
         font-weight: bold;
     }
 
@@ -98,7 +118,7 @@
             transform: translateY(0%);
         }
 
-        #top-line p {
+        #top-line h1 {
             font-size: 36px;
         }
     }

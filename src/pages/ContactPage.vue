@@ -4,7 +4,7 @@
 
 <template>
     <div class="contact-page">
-        <ContactSection compact />
+        <ContactSection compact :heading-level="1" />
         <div class="footer-spacer"></div>
     </div>
 </template>

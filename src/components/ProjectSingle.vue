@@ -38,7 +38,14 @@
 <template>
     <div ref="cardRef" class="project-card" :class="{ 'visible': isVisible }">
         <div class="project-image">
-            <img :src="imageUrl" :alt="name" />
+            <img
+                :src="imageUrl"
+                :alt="`Logo du projet ${name}`"
+                width="90"
+                height="90"
+                loading="lazy"
+                decoding="async"
+            />
         </div>
         <h3 class="project-name text-highlight-2">{{ name }}</h3>
         <div class="project-tags">
