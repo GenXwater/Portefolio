@@ -37,8 +37,7 @@ const handleMouseMove = (event) => {
 
     #icons-list {
         display: grid;
-        grid-template-columns: repeat(6, 1fr);
-        grid-template-rows: repeat(2, 1fr);
+        grid-template-columns: repeat(6, minmax(0, 1fr));
         grid-column-gap: 5px;
         grid-row-gap: 50px;
         margin-top: 35px;
@@ -49,11 +48,12 @@ const handleMouseMove = (event) => {
         display: block;
         text-align: center;
         color: var(--vt-c-custom-text-1);
-        padding: 20px;
+        padding: 20px 12px;
         cursor: pointer;
         text-decoration: none;
         --mouse-x: 50%;
         --mouse-y: 50%;
+        min-width: 0;
     }
 
     .techno-container::before {
@@ -77,10 +77,13 @@ const handleMouseMove = (event) => {
 
     .techno-container span {
         font-weight: bold;
+        display: block;
+        overflow-wrap: anywhere;
+        font-size: clamp(0.85rem, 1.8vw, 1rem);
     }
 
     .techno-icon {
-        font-size: 80px;
+        font-size: clamp(58px, 6vw, 80px);
         margin: 0 auto;
         color: var(--vt-c-custom-text-1);
         transition: transform 0.3s ease, color 0.5s ease;
@@ -93,19 +96,39 @@ const handleMouseMove = (event) => {
 
     @media screen and (max-width: 905px) {
         #icons-list {
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(3, 1fr);
+            grid-template-columns: repeat(4, minmax(0, 1fr));
             grid-column-gap: 5px;
-            grid-row-gap: 40px;
+            grid-row-gap: 36px;
+        }
+
+        .techno-container {
+            padding: 14px 8px;
         }
     }
 
-    @media screen and (max-width: 450px) {
+    @media screen and (max-width: 600px) {
         #icons-list {
-            grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(4, 1fr);
+            grid-template-columns: repeat(3, minmax(0, 1fr));
             grid-column-gap: 5px;
             grid-row-gap: 20px;
+        }
+
+        .techno-container {
+            padding: 10px 6px;
+        }
+
+        .techno-icon {
+            font-size: 52px;
+        }
+
+        .techno-container span {
+            font-size: 0.82rem;
+        }
+    }
+
+    @media screen and (max-width: 380px) {
+        #icons-list {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
         }
     }
 </style>

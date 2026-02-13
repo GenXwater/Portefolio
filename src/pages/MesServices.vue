@@ -89,6 +89,7 @@ const goToContact = () => router.push('/contact');
     padding: 140px 0 80px;
     position: relative;
     z-index: 1;
+    overflow-x: hidden;
   }
 
   .services-hero {
@@ -193,8 +194,8 @@ const goToContact = () => router.push('/contact');
     left: 50%;
     top: 30%;
     transform: translateX(-50%);
-    width: 700px;
-    height: 700px;
+    width: min(700px, 95vw);
+    height: min(700px, 95vw);
     background: radial-gradient(circle, color-mix(in srgb, var(--accent) 12%, transparent), transparent 60%);
     filter: blur(80px);
     pointer-events: none;

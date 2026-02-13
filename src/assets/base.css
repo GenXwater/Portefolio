@@ -124,6 +124,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 .text-highlight-1 {
   color: var(--vt-c-custom-text-1)
 }

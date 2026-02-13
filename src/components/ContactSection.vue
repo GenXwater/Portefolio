@@ -328,6 +328,7 @@
     .contact-section {
         position: relative;
         padding: 120px 0;
+        overflow-x: hidden;
     }
 
     .contact-section.compact {
@@ -651,8 +652,8 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 600px;
-        height: 600px;
+        width: min(600px, 92vw);
+        height: min(600px, 92vw);
         background: radial-gradient(circle, 
             color-mix(in srgb, var(--vt-c-custom-text-1) 8%, transparent) 0%,
             transparent 70%);

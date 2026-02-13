@@ -18,12 +18,7 @@
 <style scoped>
     .footer-wrapper {
         margin-top: 100px;
-        position: relative;
-        left: 0;
-        right: 0;
-        margin-left: calc(-50vw + 50%);
-        margin-right: calc(-50vw + 50%);
-        width: 100vw;
+        width: 100%;
         border-top: 1px solid color-mix(in srgb, var(--vt-c-custom-text-1) 20%, transparent);
         background: color-mix(in srgb, var(--vt-c-custom-dark-1) 90%, var(--vt-c-custom-text-1) 5%);
     }
@@ -31,7 +26,7 @@
     .footer-content {
         max-width: 1280px;
         margin: 0 auto;
-        padding: 40px 20px;
+        padding: 40px clamp(16px, 4vw, 24px);
         text-align: center;
     }
 
