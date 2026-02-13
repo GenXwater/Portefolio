@@ -164,8 +164,6 @@ const goToContact = () => router.push('/contact');
     padding: 0 8px;
   }
 
-  .service-icon { font-size: 28px; line-height: 1; display:inline-block; }
-
   @media (max-width: 1000px) {
     .service-card { --service-card-height: 280px; }
   }
@@ -177,17 +175,6 @@ const goToContact = () => router.push('/contact');
   /* No hover interactions as requested */
 
   .services-cta { text-align: center; margin-top: 40px; }
-
-  .cta-btn {
-    padding: 12px 22px;
-    border-radius: 999px;
-    border: none;
-    background: linear-gradient(90deg, var(--accent), var(--accent-2));
-    color: white;
-    font-weight: 700;
-    cursor: pointer;
-    box-shadow: 0 10px 40px color-mix(in srgb, var(--accent) 20%, transparent);
-  }
 
   .page-glow {
     position: absolute;

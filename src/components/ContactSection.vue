@@ -1,5 +1,5 @@
 <script setup>
-    import { ref, computed } from 'vue';
+    import { ref, computed, onBeforeUnmount } from 'vue';
     import IconSend from './icons/IconSend.vue';
     import IconCoffee from './icons/IconCoffee.vue';
     import IconMapPin from './icons/IconMapPin.vue';
@@ -48,6 +48,7 @@
 
     const focusedField = ref(null);
     let blurTimeout = null;
+    let submittedTimeout = null;
 
     const COOLDOWN = 60000; // 1 minute
     const lastSubmitTime = ref(0);
@@ -62,6 +63,11 @@
             focusedField.value = null;
         }, 200);
     };
+
+    onBeforeUnmount(() => {
+        clearTimeout(blurTimeout);
+        clearTimeout(submittedTimeout);
+    });
 
     const validateField = (field) => {
         errors.value[field] = '';
@@ -159,7 +165,7 @@
             resetForm();
             lastSubmitTime.value = now;
 
-            setTimeout(() => { isSubmitted.value = false; }, 5000);
+            submittedTimeout = setTimeout(() => { isSubmitted.value = false; }, 5000);
             scrollToTop();
         } catch (err) {
             console.error('Erreur send:', err);
@@ -532,10 +538,6 @@
         color: var(--vt-c-custom-text-1);
         background: color-mix(in srgb, var(--vt-c-custom-dark-1), var(--vt-c-custom-text-1) 5%);
         padding: 0 5px;
-    }
-
-    .form-group textarea ~ label {
-        transform: none;
     }
 
     .form-group.focused textarea ~ label,

@@ -1,5 +1,5 @@
 <script setup>
-    import { ref, onMounted, computed } from 'vue';
+    import { ref, onMounted, onBeforeUnmount, computed } from 'vue';
 
     const props = defineProps({
         name: String,
@@ -11,12 +11,13 @@
 
     const isVisible = ref(false);
     const cardRef = ref(null);
+    let observer = null;
 
     const tagList = props.tags.split(';').map(tag => tag.trim());
     const imageUrl = computed(() => new URL(`../assets/${props.image}`, import.meta.url).href);
 
     onMounted(() => {
-        const observer = new IntersectionObserver(
+        observer = new IntersectionObserver(
             ([entry]) => {
                 if (entry.isIntersecting) {
                     isVisible.value = true;
@@ -26,6 +27,11 @@
             { threshold: 0.15 }
         );
         if (cardRef.value) observer.observe(cardRef.value);
+    });
+
+    onBeforeUnmount(() => {
+        observer?.disconnect();
+        observer = null;
     });
 </script>
 

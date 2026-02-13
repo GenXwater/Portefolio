@@ -16,7 +16,6 @@
             <div id="social">
                 <SocialIcone img="icons8-github-64" alt="github" link="https://github.com/GenXwater" />
                 <SocialIcone img="icons8-linkedin-64" alt="linkedin" link="https://fr.linkedin.com/in/louis-genty-023708209" />
-                <!-- Exemple avec component et props intelligents -->
             </div>
 
         </div>
@@ -77,11 +76,6 @@
 
     #social {
         margin-top: 15px;
-    }
-
-    .social-img {
-        margin-right: 10px;
-        filter: opacity(0.7);
     }
 
     @media screen and (max-width: 905px) {

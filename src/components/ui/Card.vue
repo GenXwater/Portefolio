@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 
 const props = defineProps({
   observe: { type: Boolean, default: true },
@@ -8,6 +8,7 @@ const props = defineProps({
 
 const isVisible = ref(false);
 const cardRef = ref(null);
+let observer = null;
 
 onMounted(() => {
   if (!props.observe) {
@@ -15,7 +16,7 @@ onMounted(() => {
     return;
   }
 
-  const observer = new IntersectionObserver(
+  observer = new IntersectionObserver(
     ([entry]) => {
       if (entry.isIntersecting) {
         isVisible.value = true;
@@ -26,6 +27,11 @@ onMounted(() => {
   );
 
   if (cardRef.value) observer.observe(cardRef.value);
+});
+
+onBeforeUnmount(() => {
+  observer?.disconnect();
+  observer = null;
 });
 </script>
 

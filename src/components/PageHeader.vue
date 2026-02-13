@@ -294,13 +294,9 @@
         .logo-text {
             font-size: 16px;
         }
-
-        .logo-icon {
-            font-size: 20px;
-        }
     }
 
-    /* ensure RouterLink used as button keeps ButtonSecondary look */
+    /* ensure RouterLink used as button keeps secondary button look */
     .btn-secondary {
         display: inline-flex;
         align-items: center;
