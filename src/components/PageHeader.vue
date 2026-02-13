@@ -8,7 +8,8 @@
 
     const router = useRouter();
     const menuOpen = ref(false);
-    const headerRef = ref(null);
+    const mobileNavRef = ref(null);
+    const burgerButtonRef = ref(null);
 
     const toggleMenu = () => {
         menuOpen.value = !menuOpen.value;
@@ -21,12 +22,14 @@
 
     const handleClickOutside = (event) => {
         if (!menuOpen.value) return;
-        if (!headerRef.value) return;
 
         const target = event.target;
-        if (target instanceof Node && !headerRef.value.contains(target)) {
-            menuOpen.value = false;
-        }
+        if (!(target instanceof Node)) return;
+
+        const clickedInMobileNav = mobileNavRef.value?.contains(target);
+        const clickedOnBurger = burgerButtonRef.value?.contains(target);
+
+        if (!clickedInMobileNav && !clickedOnBurger) menuOpen.value = false;
     };
 
     onMounted(() => {
@@ -39,7 +42,7 @@
 </script>
 
 <template>
-    <header ref="headerRef" class="header-wrapper">
+    <header class="header-wrapper">
         <div class="header-content">
             <!-- Logo / Identité à gauche -->
             <div class="header-left">
@@ -69,7 +72,7 @@
             </div>
 
             <!-- Menu burger mobile -->
-            <button class="burger-menu" :class="{ 'active': menuOpen }" @click="toggleMenu">
+            <button ref="burgerButtonRef" class="burger-menu" :class="{ 'active': menuOpen }" @click="toggleMenu">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -77,7 +80,7 @@
         </div>
 
         <!-- Menu mobile -->
-        <nav class="mobile-nav" :class="{ 'open': menuOpen }">
+        <nav ref="mobileNavRef" class="mobile-nav" :class="{ 'open': menuOpen }">
             <RouterLink to="/#about-me" class="mobile-link" @click="menuOpen = false">À propos</RouterLink>
             <RouterLink to="/#xp" class="mobile-link" @click="menuOpen = false">Expériences</RouterLink>
             <RouterLink to="/#projects" class="mobile-link" @click="menuOpen = false">Projets</RouterLink>
